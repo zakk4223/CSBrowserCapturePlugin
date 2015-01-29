@@ -1,0 +1,923 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		344E1D2E1A792E160081E5E7 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 344E1D2D1A792E160081E5E7 /* main.mm */; };
+		344E1D531A792E770081E5E7 /* libcef_dll_wrapper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 344E1D521A792E770081E5E7 /* libcef_dll_wrapper.a */; };
+		344E1E021A792EE20081E5E7 /* Chromium Embedded Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 344E1D511A792E620081E5E7 /* Chromium Embedded Framework.framework */; };
+		344E1E041A792EEC0081E5E7 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 344E1E031A792EEC0081E5E7 /* IOSurface.framework */; };
+		344E1E311A792F840081E5E7 /* cef_helper_app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 344E1E301A792F840081E5E7 /* cef_helper_app.cpp */; };
+		344E1E321A792F9B0081E5E7 /* Chromium Embedded Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 344E1D511A792E620081E5E7 /* Chromium Embedded Framework.framework */; };
+		344E1E331A792F9E0081E5E7 /* libcef_dll_wrapper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 344E1D521A792E770081E5E7 /* libcef_dll_wrapper.a */; };
+		344E1E381A792FE40081E5E7 /* Chromium Embedded Framework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 344E1D511A792E620081E5E7 /* Chromium Embedded Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		344E1E3B1A7930120081E5E7 /* CefWithIOSurface Helper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 344E1E101A792F3F0081E5E7 /* CefWithIOSurface Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		344E1E351A792FC80081E5E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 344E1D1D1A792E160081E5E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 344E1E0F1A792F3F0081E5E7;
+			remoteInfo = "CefWithIOSurface Helper";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		344E1E371A792FDA0081E5E7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				344E1E381A792FE40081E5E7 /* Chromium Embedded Framework.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		344E1E3A1A7930050081E5E7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				344E1E3B1A7930120081E5E7 /* CefWithIOSurface Helper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		344E1D251A792E160081E5E7 /* CefWithIOSurface.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CefWithIOSurface.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		344E1D291A792E160081E5E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		344E1D2D1A792E160081E5E7 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		344E1D511A792E620081E5E7 /* Chromium Embedded Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "Chromium Embedded Framework.framework"; sourceTree = "<group>"; };
+		344E1D521A792E770081E5E7 /* libcef_dll_wrapper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcef_dll_wrapper.a; sourceTree = "<group>"; };
+		344E1D561A792E990081E5E7 /* cef_atomic_ref_count.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_atomic_ref_count.h; sourceTree = "<group>"; };
+		344E1D571A792E990081E5E7 /* cef_atomicops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_atomicops.h; sourceTree = "<group>"; };
+		344E1D581A792E990081E5E7 /* cef_basictypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_basictypes.h; sourceTree = "<group>"; };
+		344E1D591A792E990081E5E7 /* cef_bind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_bind.h; sourceTree = "<group>"; };
+		344E1D5A1A792E990081E5E7 /* cef_bind_helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_bind_helpers.h; sourceTree = "<group>"; };
+		344E1D5B1A792E990081E5E7 /* cef_build.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_build.h; sourceTree = "<group>"; };
+		344E1D5C1A792E990081E5E7 /* cef_callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_callback.h; sourceTree = "<group>"; };
+		344E1D5D1A792E990081E5E7 /* cef_callback_forward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_callback_forward.h; sourceTree = "<group>"; };
+		344E1D5E1A792E990081E5E7 /* cef_callback_helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_callback_helpers.h; sourceTree = "<group>"; };
+		344E1D5F1A792E990081E5E7 /* cef_callback_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_callback_list.h; sourceTree = "<group>"; };
+		344E1D601A792E990081E5E7 /* cef_cancelable_callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_cancelable_callback.h; sourceTree = "<group>"; };
+		344E1D611A792E990081E5E7 /* cef_lock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_lock.h; sourceTree = "<group>"; };
+		344E1D621A792E990081E5E7 /* cef_logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_logging.h; sourceTree = "<group>"; };
+		344E1D631A792E990081E5E7 /* cef_macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_macros.h; sourceTree = "<group>"; };
+		344E1D641A792E990081E5E7 /* cef_move.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_move.h; sourceTree = "<group>"; };
+		344E1D651A792E990081E5E7 /* cef_platform_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_platform_thread.h; sourceTree = "<group>"; };
+		344E1D661A792E990081E5E7 /* cef_ref_counted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_ref_counted.h; sourceTree = "<group>"; };
+		344E1D671A792E990081E5E7 /* cef_scoped_ptr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_scoped_ptr.h; sourceTree = "<group>"; };
+		344E1D681A792E990081E5E7 /* cef_string16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_string16.h; sourceTree = "<group>"; };
+		344E1D691A792E990081E5E7 /* cef_template_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_template_util.h; sourceTree = "<group>"; };
+		344E1D6A1A792E990081E5E7 /* cef_thread_checker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_thread_checker.h; sourceTree = "<group>"; };
+		344E1D6B1A792E990081E5E7 /* cef_thread_collision_warner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_thread_collision_warner.h; sourceTree = "<group>"; };
+		344E1D6C1A792E990081E5E7 /* cef_trace_event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_trace_event.h; sourceTree = "<group>"; };
+		344E1D6D1A792E990081E5E7 /* cef_tuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_tuple.h; sourceTree = "<group>"; };
+		344E1D6E1A792E990081E5E7 /* cef_weak_ptr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_weak_ptr.h; sourceTree = "<group>"; };
+		344E1D701A792E990081E5E7 /* cef_atomicops_atomicword_compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_atomicops_atomicword_compat.h; sourceTree = "<group>"; };
+		344E1D711A792E990081E5E7 /* cef_atomicops_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_atomicops_mac.h; sourceTree = "<group>"; };
+		344E1D721A792E990081E5E7 /* cef_bind_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_bind_internal.h; sourceTree = "<group>"; };
+		344E1D731A792E990081E5E7 /* cef_callback_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_callback_internal.h; sourceTree = "<group>"; };
+		344E1D741A792E990081E5E7 /* cef_lock_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_lock_impl.h; sourceTree = "<group>"; };
+		344E1D751A792E990081E5E7 /* cef_raw_scoped_refptr_mismatch_checker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_raw_scoped_refptr_mismatch_checker.h; sourceTree = "<group>"; };
+		344E1D761A792E990081E5E7 /* cef_thread_checker_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_thread_checker_impl.h; sourceTree = "<group>"; };
+		344E1D781A792E990081E5E7 /* cef_app_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_app_capi.h; sourceTree = "<group>"; };
+		344E1D791A792E990081E5E7 /* cef_auth_callback_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_auth_callback_capi.h; sourceTree = "<group>"; };
+		344E1D7A1A792E990081E5E7 /* cef_base_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_base_capi.h; sourceTree = "<group>"; };
+		344E1D7B1A792E990081E5E7 /* cef_browser_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_browser_capi.h; sourceTree = "<group>"; };
+		344E1D7C1A792E990081E5E7 /* cef_browser_process_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_browser_process_handler_capi.h; sourceTree = "<group>"; };
+		344E1D7D1A792E990081E5E7 /* cef_callback_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_callback_capi.h; sourceTree = "<group>"; };
+		344E1D7E1A792E990081E5E7 /* cef_client_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_client_capi.h; sourceTree = "<group>"; };
+		344E1D7F1A792E990081E5E7 /* cef_command_line_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_command_line_capi.h; sourceTree = "<group>"; };
+		344E1D801A792E990081E5E7 /* cef_context_menu_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_context_menu_handler_capi.h; sourceTree = "<group>"; };
+		344E1D811A792E990081E5E7 /* cef_cookie_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_cookie_capi.h; sourceTree = "<group>"; };
+		344E1D821A792E990081E5E7 /* cef_dialog_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_dialog_handler_capi.h; sourceTree = "<group>"; };
+		344E1D831A792E990081E5E7 /* cef_display_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_display_handler_capi.h; sourceTree = "<group>"; };
+		344E1D841A792E990081E5E7 /* cef_dom_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_dom_capi.h; sourceTree = "<group>"; };
+		344E1D851A792E990081E5E7 /* cef_download_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_download_handler_capi.h; sourceTree = "<group>"; };
+		344E1D861A792E990081E5E7 /* cef_download_item_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_download_item_capi.h; sourceTree = "<group>"; };
+		344E1D871A792E990081E5E7 /* cef_drag_data_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_drag_data_capi.h; sourceTree = "<group>"; };
+		344E1D881A792E990081E5E7 /* cef_drag_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_drag_handler_capi.h; sourceTree = "<group>"; };
+		344E1D891A792E990081E5E7 /* cef_focus_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_focus_handler_capi.h; sourceTree = "<group>"; };
+		344E1D8A1A792E990081E5E7 /* cef_frame_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_frame_capi.h; sourceTree = "<group>"; };
+		344E1D8B1A792E990081E5E7 /* cef_geolocation_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_geolocation_capi.h; sourceTree = "<group>"; };
+		344E1D8C1A792E990081E5E7 /* cef_geolocation_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_geolocation_handler_capi.h; sourceTree = "<group>"; };
+		344E1D8D1A792E990081E5E7 /* cef_jsdialog_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_jsdialog_handler_capi.h; sourceTree = "<group>"; };
+		344E1D8E1A792E990081E5E7 /* cef_keyboard_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_keyboard_handler_capi.h; sourceTree = "<group>"; };
+		344E1D8F1A792E990081E5E7 /* cef_life_span_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_life_span_handler_capi.h; sourceTree = "<group>"; };
+		344E1D901A792E990081E5E7 /* cef_load_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_load_handler_capi.h; sourceTree = "<group>"; };
+		344E1D911A792E990081E5E7 /* cef_menu_model_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_menu_model_capi.h; sourceTree = "<group>"; };
+		344E1D921A792E990081E5E7 /* cef_navigation_entry_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_navigation_entry_capi.h; sourceTree = "<group>"; };
+		344E1D931A792E990081E5E7 /* cef_origin_whitelist_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_origin_whitelist_capi.h; sourceTree = "<group>"; };
+		344E1D941A792E990081E5E7 /* cef_path_util_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_path_util_capi.h; sourceTree = "<group>"; };
+		344E1D951A792E990081E5E7 /* cef_print_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_print_handler_capi.h; sourceTree = "<group>"; };
+		344E1D961A792E990081E5E7 /* cef_print_settings_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_print_settings_capi.h; sourceTree = "<group>"; };
+		344E1D971A792E990081E5E7 /* cef_process_message_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_process_message_capi.h; sourceTree = "<group>"; };
+		344E1D981A792E990081E5E7 /* cef_process_util_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_process_util_capi.h; sourceTree = "<group>"; };
+		344E1D991A792E990081E5E7 /* cef_render_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_render_handler_capi.h; sourceTree = "<group>"; };
+		344E1D9A1A792E990081E5E7 /* cef_render_process_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_render_process_handler_capi.h; sourceTree = "<group>"; };
+		344E1D9B1A792E990081E5E7 /* cef_request_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_request_capi.h; sourceTree = "<group>"; };
+		344E1D9C1A792E990081E5E7 /* cef_request_context_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_request_context_capi.h; sourceTree = "<group>"; };
+		344E1D9D1A792E990081E5E7 /* cef_request_context_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_request_context_handler_capi.h; sourceTree = "<group>"; };
+		344E1D9E1A792E990081E5E7 /* cef_request_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_request_handler_capi.h; sourceTree = "<group>"; };
+		344E1D9F1A792E990081E5E7 /* cef_resource_bundle_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_resource_bundle_handler_capi.h; sourceTree = "<group>"; };
+		344E1DA01A792E990081E5E7 /* cef_resource_handler_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_resource_handler_capi.h; sourceTree = "<group>"; };
+		344E1DA11A792E990081E5E7 /* cef_response_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_response_capi.h; sourceTree = "<group>"; };
+		344E1DA21A792E990081E5E7 /* cef_scheme_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_scheme_capi.h; sourceTree = "<group>"; };
+		344E1DA31A792E990081E5E7 /* cef_stream_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_stream_capi.h; sourceTree = "<group>"; };
+		344E1DA41A792E990081E5E7 /* cef_string_visitor_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_string_visitor_capi.h; sourceTree = "<group>"; };
+		344E1DA51A792E990081E5E7 /* cef_task_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_task_capi.h; sourceTree = "<group>"; };
+		344E1DA61A792E990081E5E7 /* cef_trace_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_trace_capi.h; sourceTree = "<group>"; };
+		344E1DA71A792E990081E5E7 /* cef_url_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_url_capi.h; sourceTree = "<group>"; };
+		344E1DA81A792E990081E5E7 /* cef_urlrequest_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_urlrequest_capi.h; sourceTree = "<group>"; };
+		344E1DA91A792E990081E5E7 /* cef_v8_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_v8_capi.h; sourceTree = "<group>"; };
+		344E1DAA1A792E990081E5E7 /* cef_values_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_values_capi.h; sourceTree = "<group>"; };
+		344E1DAB1A792E990081E5E7 /* cef_web_plugin_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_web_plugin_capi.h; sourceTree = "<group>"; };
+		344E1DAC1A792E990081E5E7 /* cef_xml_reader_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_xml_reader_capi.h; sourceTree = "<group>"; };
+		344E1DAD1A792E990081E5E7 /* cef_zip_reader_capi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_zip_reader_capi.h; sourceTree = "<group>"; };
+		344E1DAE1A792E990081E5E7 /* cef_app.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_app.h; sourceTree = "<group>"; };
+		344E1DAF1A792E990081E5E7 /* cef_application_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_application_mac.h; sourceTree = "<group>"; };
+		344E1DB01A792E990081E5E7 /* cef_auth_callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_auth_callback.h; sourceTree = "<group>"; };
+		344E1DB11A792E990081E5E7 /* cef_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_base.h; sourceTree = "<group>"; };
+		344E1DB21A792E990081E5E7 /* cef_browser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_browser.h; sourceTree = "<group>"; };
+		344E1DB31A792E990081E5E7 /* cef_browser_process_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_browser_process_handler.h; sourceTree = "<group>"; };
+		344E1DB41A792E990081E5E7 /* cef_callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_callback.h; sourceTree = "<group>"; };
+		344E1DB51A792E990081E5E7 /* cef_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_client.h; sourceTree = "<group>"; };
+		344E1DB61A792E990081E5E7 /* cef_command_line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_command_line.h; sourceTree = "<group>"; };
+		344E1DB71A792E990081E5E7 /* cef_context_menu_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_context_menu_handler.h; sourceTree = "<group>"; };
+		344E1DB81A792E990081E5E7 /* cef_cookie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_cookie.h; sourceTree = "<group>"; };
+		344E1DB91A792E990081E5E7 /* cef_dialog_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_dialog_handler.h; sourceTree = "<group>"; };
+		344E1DBA1A792E990081E5E7 /* cef_display_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_display_handler.h; sourceTree = "<group>"; };
+		344E1DBB1A792E990081E5E7 /* cef_dom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_dom.h; sourceTree = "<group>"; };
+		344E1DBC1A792E990081E5E7 /* cef_download_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_download_handler.h; sourceTree = "<group>"; };
+		344E1DBD1A792E990081E5E7 /* cef_download_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_download_item.h; sourceTree = "<group>"; };
+		344E1DBE1A792E990081E5E7 /* cef_drag_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_drag_data.h; sourceTree = "<group>"; };
+		344E1DBF1A792E990081E5E7 /* cef_drag_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_drag_handler.h; sourceTree = "<group>"; };
+		344E1DC01A792E990081E5E7 /* cef_focus_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_focus_handler.h; sourceTree = "<group>"; };
+		344E1DC11A792E990081E5E7 /* cef_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_frame.h; sourceTree = "<group>"; };
+		344E1DC21A792E990081E5E7 /* cef_geolocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_geolocation.h; sourceTree = "<group>"; };
+		344E1DC31A792E990081E5E7 /* cef_geolocation_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_geolocation_handler.h; sourceTree = "<group>"; };
+		344E1DC41A792E990081E5E7 /* cef_jsdialog_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_jsdialog_handler.h; sourceTree = "<group>"; };
+		344E1DC51A792E990081E5E7 /* cef_keyboard_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_keyboard_handler.h; sourceTree = "<group>"; };
+		344E1DC61A792E990081E5E7 /* cef_life_span_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_life_span_handler.h; sourceTree = "<group>"; };
+		344E1DC71A792E990081E5E7 /* cef_load_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_load_handler.h; sourceTree = "<group>"; };
+		344E1DC81A792E990081E5E7 /* cef_menu_model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_menu_model.h; sourceTree = "<group>"; };
+		344E1DC91A792E990081E5E7 /* cef_navigation_entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_navigation_entry.h; sourceTree = "<group>"; };
+		344E1DCA1A792E990081E5E7 /* cef_origin_whitelist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_origin_whitelist.h; sourceTree = "<group>"; };
+		344E1DCB1A792E990081E5E7 /* cef_pack_resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_pack_resources.h; sourceTree = "<group>"; };
+		344E1DCC1A792E990081E5E7 /* cef_pack_strings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_pack_strings.h; sourceTree = "<group>"; };
+		344E1DCD1A792E990081E5E7 /* cef_path_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_path_util.h; sourceTree = "<group>"; };
+		344E1DCE1A792E990081E5E7 /* cef_print_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_print_handler.h; sourceTree = "<group>"; };
+		344E1DCF1A792E990081E5E7 /* cef_print_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_print_settings.h; sourceTree = "<group>"; };
+		344E1DD01A792E990081E5E7 /* cef_process_message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_process_message.h; sourceTree = "<group>"; };
+		344E1DD11A792E990081E5E7 /* cef_process_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_process_util.h; sourceTree = "<group>"; };
+		344E1DD21A792E990081E5E7 /* cef_render_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_render_handler.h; sourceTree = "<group>"; };
+		344E1DD31A792E990081E5E7 /* cef_render_process_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_render_process_handler.h; sourceTree = "<group>"; };
+		344E1DD41A792E990081E5E7 /* cef_request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_request.h; sourceTree = "<group>"; };
+		344E1DD51A792E990081E5E7 /* cef_request_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_request_context.h; sourceTree = "<group>"; };
+		344E1DD61A792E990081E5E7 /* cef_request_context_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_request_context_handler.h; sourceTree = "<group>"; };
+		344E1DD71A792E990081E5E7 /* cef_request_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_request_handler.h; sourceTree = "<group>"; };
+		344E1DD81A792E990081E5E7 /* cef_resource_bundle_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_resource_bundle_handler.h; sourceTree = "<group>"; };
+		344E1DD91A792E990081E5E7 /* cef_resource_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_resource_handler.h; sourceTree = "<group>"; };
+		344E1DDA1A792E990081E5E7 /* cef_response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_response.h; sourceTree = "<group>"; };
+		344E1DDB1A792E990081E5E7 /* cef_runnable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_runnable.h; sourceTree = "<group>"; };
+		344E1DDC1A792E990081E5E7 /* cef_scheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_scheme.h; sourceTree = "<group>"; };
+		344E1DDD1A792E990081E5E7 /* cef_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_stream.h; sourceTree = "<group>"; };
+		344E1DDE1A792E990081E5E7 /* cef_string_visitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_string_visitor.h; sourceTree = "<group>"; };
+		344E1DDF1A792E990081E5E7 /* cef_task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_task.h; sourceTree = "<group>"; };
+		344E1DE01A792E990081E5E7 /* cef_trace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_trace.h; sourceTree = "<group>"; };
+		344E1DE11A792E990081E5E7 /* cef_url.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_url.h; sourceTree = "<group>"; };
+		344E1DE21A792E990081E5E7 /* cef_urlrequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_urlrequest.h; sourceTree = "<group>"; };
+		344E1DE31A792E990081E5E7 /* cef_v8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_v8.h; sourceTree = "<group>"; };
+		344E1DE41A792E990081E5E7 /* cef_values.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_values.h; sourceTree = "<group>"; };
+		344E1DE51A792E990081E5E7 /* cef_version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_version.h; sourceTree = "<group>"; };
+		344E1DE61A792E990081E5E7 /* cef_web_plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_web_plugin.h; sourceTree = "<group>"; };
+		344E1DE71A792E990081E5E7 /* cef_xml_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_xml_reader.h; sourceTree = "<group>"; };
+		344E1DE81A792E990081E5E7 /* cef_zip_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_zip_reader.h; sourceTree = "<group>"; };
+		344E1DEA1A792E990081E5E7 /* cef_export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_export.h; sourceTree = "<group>"; };
+		344E1DEB1A792E990081E5E7 /* cef_logging_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_logging_internal.h; sourceTree = "<group>"; };
+		344E1DEC1A792E990081E5E7 /* cef_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_mac.h; sourceTree = "<group>"; };
+		344E1DED1A792E990081E5E7 /* cef_ptr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_ptr.h; sourceTree = "<group>"; };
+		344E1DEE1A792E990081E5E7 /* cef_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_string.h; sourceTree = "<group>"; };
+		344E1DEF1A792E990081E5E7 /* cef_string_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_string_list.h; sourceTree = "<group>"; };
+		344E1DF01A792E990081E5E7 /* cef_string_map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_string_map.h; sourceTree = "<group>"; };
+		344E1DF11A792E990081E5E7 /* cef_string_multimap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_string_multimap.h; sourceTree = "<group>"; };
+		344E1DF21A792E990081E5E7 /* cef_string_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_string_types.h; sourceTree = "<group>"; };
+		344E1DF31A792E990081E5E7 /* cef_string_wrappers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_string_wrappers.h; sourceTree = "<group>"; };
+		344E1DF41A792E990081E5E7 /* cef_thread_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_thread_internal.h; sourceTree = "<group>"; };
+		344E1DF51A792E990081E5E7 /* cef_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_time.h; sourceTree = "<group>"; };
+		344E1DF61A792E990081E5E7 /* cef_trace_event_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_trace_event_internal.h; sourceTree = "<group>"; };
+		344E1DF71A792E990081E5E7 /* cef_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_types.h; sourceTree = "<group>"; };
+		344E1DF81A792E990081E5E7 /* cef_types_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_types_mac.h; sourceTree = "<group>"; };
+		344E1DF91A792E990081E5E7 /* cef_types_wrappers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_types_wrappers.h; sourceTree = "<group>"; };
+		344E1DFB1A792E990081E5E7 /* cef_byte_read_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_byte_read_handler.h; sourceTree = "<group>"; };
+		344E1DFC1A792E990081E5E7 /* cef_closure_task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_closure_task.h; sourceTree = "<group>"; };
+		344E1DFD1A792E990081E5E7 /* cef_helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_helpers.h; sourceTree = "<group>"; };
+		344E1DFE1A792E990081E5E7 /* cef_message_router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_message_router.h; sourceTree = "<group>"; };
+		344E1DFF1A792E990081E5E7 /* cef_stream_resource_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_stream_resource_handler.h; sourceTree = "<group>"; };
+		344E1E001A792E990081E5E7 /* cef_xml_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_xml_object.h; sourceTree = "<group>"; };
+		344E1E011A792E990081E5E7 /* cef_zip_archive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cef_zip_archive.h; sourceTree = "<group>"; };
+		344E1E031A792EEC0081E5E7 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
+		344E1E061A792F130081E5E7 /* change_mach_o_flags.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = change_mach_o_flags.py; sourceTree = "<group>"; };
+		344E1E071A792F130081E5E7 /* change_mach_o_flags_from_xcode.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = change_mach_o_flags_from_xcode.sh; sourceTree = "<group>"; };
+		344E1E081A792F130081E5E7 /* make_more_helpers.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = make_more_helpers.sh; sourceTree = "<group>"; };
+		344E1E091A792F130081E5E7 /* README-TRANSFER.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "README-TRANSFER.txt"; sourceTree = "<group>"; };
+		344E1E0A1A792F130081E5E7 /* strip_from_xcode */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = strip_from_xcode; sourceTree = "<group>"; };
+		344E1E0B1A792F130081E5E7 /* strip_save_dsym */ = {isa = PBXFileReference; lastKnownFileType = text; path = strip_save_dsym; sourceTree = "<group>"; };
+		344E1E101A792F3F0081E5E7 /* CefWithIOSurface Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CefWithIOSurface Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		344E1E131A792F3F0081E5E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		344E1E301A792F840081E5E7 /* cef_helper_app.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cef_helper_app.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		344E1D221A792E160081E5E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				344E1E041A792EEC0081E5E7 /* IOSurface.framework in Frameworks */,
+				344E1D531A792E770081E5E7 /* libcef_dll_wrapper.a in Frameworks */,
+				344E1E021A792EE20081E5E7 /* Chromium Embedded Framework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		344E1E0D1A792F3F0081E5E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				344E1E321A792F9B0081E5E7 /* Chromium Embedded Framework.framework in Frameworks */,
+				344E1E331A792F9E0081E5E7 /* libcef_dll_wrapper.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		344E1D1C1A792E160081E5E7 = {
+			isa = PBXGroup;
+			children = (
+				344E1E051A792F130081E5E7 /* tools */,
+				344E1E031A792EEC0081E5E7 /* IOSurface.framework */,
+				344E1D521A792E770081E5E7 /* libcef_dll_wrapper.a */,
+				344E1D511A792E620081E5E7 /* Chromium Embedded Framework.framework */,
+				344E1D541A792E990081E5E7 /* include */,
+				344E1D271A792E160081E5E7 /* CefWithIOSurface */,
+				344E1E111A792F3F0081E5E7 /* CefWithIOSurface Helper */,
+				344E1D261A792E160081E5E7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		344E1D261A792E160081E5E7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				344E1D251A792E160081E5E7 /* CefWithIOSurface.app */,
+				344E1E101A792F3F0081E5E7 /* CefWithIOSurface Helper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		344E1D271A792E160081E5E7 /* CefWithIOSurface */ = {
+			isa = PBXGroup;
+			children = (
+				344E1D281A792E160081E5E7 /* Supporting Files */,
+			);
+			path = CefWithIOSurface;
+			sourceTree = "<group>";
+		};
+		344E1D281A792E160081E5E7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				344E1D291A792E160081E5E7 /* Info.plist */,
+				344E1D2D1A792E160081E5E7 /* main.mm */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		344E1D541A792E990081E5E7 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				344E1D551A792E990081E5E7 /* base */,
+				344E1D771A792E990081E5E7 /* capi */,
+				344E1DAE1A792E990081E5E7 /* cef_app.h */,
+				344E1DAF1A792E990081E5E7 /* cef_application_mac.h */,
+				344E1DB01A792E990081E5E7 /* cef_auth_callback.h */,
+				344E1DB11A792E990081E5E7 /* cef_base.h */,
+				344E1DB21A792E990081E5E7 /* cef_browser.h */,
+				344E1DB31A792E990081E5E7 /* cef_browser_process_handler.h */,
+				344E1DB41A792E990081E5E7 /* cef_callback.h */,
+				344E1DB51A792E990081E5E7 /* cef_client.h */,
+				344E1DB61A792E990081E5E7 /* cef_command_line.h */,
+				344E1DB71A792E990081E5E7 /* cef_context_menu_handler.h */,
+				344E1DB81A792E990081E5E7 /* cef_cookie.h */,
+				344E1DB91A792E990081E5E7 /* cef_dialog_handler.h */,
+				344E1DBA1A792E990081E5E7 /* cef_display_handler.h */,
+				344E1DBB1A792E990081E5E7 /* cef_dom.h */,
+				344E1DBC1A792E990081E5E7 /* cef_download_handler.h */,
+				344E1DBD1A792E990081E5E7 /* cef_download_item.h */,
+				344E1DBE1A792E990081E5E7 /* cef_drag_data.h */,
+				344E1DBF1A792E990081E5E7 /* cef_drag_handler.h */,
+				344E1DC01A792E990081E5E7 /* cef_focus_handler.h */,
+				344E1DC11A792E990081E5E7 /* cef_frame.h */,
+				344E1DC21A792E990081E5E7 /* cef_geolocation.h */,
+				344E1DC31A792E990081E5E7 /* cef_geolocation_handler.h */,
+				344E1DC41A792E990081E5E7 /* cef_jsdialog_handler.h */,
+				344E1DC51A792E990081E5E7 /* cef_keyboard_handler.h */,
+				344E1DC61A792E990081E5E7 /* cef_life_span_handler.h */,
+				344E1DC71A792E990081E5E7 /* cef_load_handler.h */,
+				344E1DC81A792E990081E5E7 /* cef_menu_model.h */,
+				344E1DC91A792E990081E5E7 /* cef_navigation_entry.h */,
+				344E1DCA1A792E990081E5E7 /* cef_origin_whitelist.h */,
+				344E1DCB1A792E990081E5E7 /* cef_pack_resources.h */,
+				344E1DCC1A792E990081E5E7 /* cef_pack_strings.h */,
+				344E1DCD1A792E990081E5E7 /* cef_path_util.h */,
+				344E1DCE1A792E990081E5E7 /* cef_print_handler.h */,
+				344E1DCF1A792E990081E5E7 /* cef_print_settings.h */,
+				344E1DD01A792E990081E5E7 /* cef_process_message.h */,
+				344E1DD11A792E990081E5E7 /* cef_process_util.h */,
+				344E1DD21A792E990081E5E7 /* cef_render_handler.h */,
+				344E1DD31A792E990081E5E7 /* cef_render_process_handler.h */,
+				344E1DD41A792E990081E5E7 /* cef_request.h */,
+				344E1DD51A792E990081E5E7 /* cef_request_context.h */,
+				344E1DD61A792E990081E5E7 /* cef_request_context_handler.h */,
+				344E1DD71A792E990081E5E7 /* cef_request_handler.h */,
+				344E1DD81A792E990081E5E7 /* cef_resource_bundle_handler.h */,
+				344E1DD91A792E990081E5E7 /* cef_resource_handler.h */,
+				344E1DDA1A792E990081E5E7 /* cef_response.h */,
+				344E1DDB1A792E990081E5E7 /* cef_runnable.h */,
+				344E1DDC1A792E990081E5E7 /* cef_scheme.h */,
+				344E1DDD1A792E990081E5E7 /* cef_stream.h */,
+				344E1DDE1A792E990081E5E7 /* cef_string_visitor.h */,
+				344E1DDF1A792E990081E5E7 /* cef_task.h */,
+				344E1DE01A792E990081E5E7 /* cef_trace.h */,
+				344E1DE11A792E990081E5E7 /* cef_url.h */,
+				344E1DE21A792E990081E5E7 /* cef_urlrequest.h */,
+				344E1DE31A792E990081E5E7 /* cef_v8.h */,
+				344E1DE41A792E990081E5E7 /* cef_values.h */,
+				344E1DE51A792E990081E5E7 /* cef_version.h */,
+				344E1DE61A792E990081E5E7 /* cef_web_plugin.h */,
+				344E1DE71A792E990081E5E7 /* cef_xml_reader.h */,
+				344E1DE81A792E990081E5E7 /* cef_zip_reader.h */,
+				344E1DE91A792E990081E5E7 /* internal */,
+				344E1DFA1A792E990081E5E7 /* wrapper */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		344E1D551A792E990081E5E7 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				344E1D561A792E990081E5E7 /* cef_atomic_ref_count.h */,
+				344E1D571A792E990081E5E7 /* cef_atomicops.h */,
+				344E1D581A792E990081E5E7 /* cef_basictypes.h */,
+				344E1D591A792E990081E5E7 /* cef_bind.h */,
+				344E1D5A1A792E990081E5E7 /* cef_bind_helpers.h */,
+				344E1D5B1A792E990081E5E7 /* cef_build.h */,
+				344E1D5C1A792E990081E5E7 /* cef_callback.h */,
+				344E1D5D1A792E990081E5E7 /* cef_callback_forward.h */,
+				344E1D5E1A792E990081E5E7 /* cef_callback_helpers.h */,
+				344E1D5F1A792E990081E5E7 /* cef_callback_list.h */,
+				344E1D601A792E990081E5E7 /* cef_cancelable_callback.h */,
+				344E1D611A792E990081E5E7 /* cef_lock.h */,
+				344E1D621A792E990081E5E7 /* cef_logging.h */,
+				344E1D631A792E990081E5E7 /* cef_macros.h */,
+				344E1D641A792E990081E5E7 /* cef_move.h */,
+				344E1D651A792E990081E5E7 /* cef_platform_thread.h */,
+				344E1D661A792E990081E5E7 /* cef_ref_counted.h */,
+				344E1D671A792E990081E5E7 /* cef_scoped_ptr.h */,
+				344E1D681A792E990081E5E7 /* cef_string16.h */,
+				344E1D691A792E990081E5E7 /* cef_template_util.h */,
+				344E1D6A1A792E990081E5E7 /* cef_thread_checker.h */,
+				344E1D6B1A792E990081E5E7 /* cef_thread_collision_warner.h */,
+				344E1D6C1A792E990081E5E7 /* cef_trace_event.h */,
+				344E1D6D1A792E990081E5E7 /* cef_tuple.h */,
+				344E1D6E1A792E990081E5E7 /* cef_weak_ptr.h */,
+				344E1D6F1A792E990081E5E7 /* internal */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		344E1D6F1A792E990081E5E7 /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				344E1D701A792E990081E5E7 /* cef_atomicops_atomicword_compat.h */,
+				344E1D711A792E990081E5E7 /* cef_atomicops_mac.h */,
+				344E1D721A792E990081E5E7 /* cef_bind_internal.h */,
+				344E1D731A792E990081E5E7 /* cef_callback_internal.h */,
+				344E1D741A792E990081E5E7 /* cef_lock_impl.h */,
+				344E1D751A792E990081E5E7 /* cef_raw_scoped_refptr_mismatch_checker.h */,
+				344E1D761A792E990081E5E7 /* cef_thread_checker_impl.h */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
+		344E1D771A792E990081E5E7 /* capi */ = {
+			isa = PBXGroup;
+			children = (
+				344E1D781A792E990081E5E7 /* cef_app_capi.h */,
+				344E1D791A792E990081E5E7 /* cef_auth_callback_capi.h */,
+				344E1D7A1A792E990081E5E7 /* cef_base_capi.h */,
+				344E1D7B1A792E990081E5E7 /* cef_browser_capi.h */,
+				344E1D7C1A792E990081E5E7 /* cef_browser_process_handler_capi.h */,
+				344E1D7D1A792E990081E5E7 /* cef_callback_capi.h */,
+				344E1D7E1A792E990081E5E7 /* cef_client_capi.h */,
+				344E1D7F1A792E990081E5E7 /* cef_command_line_capi.h */,
+				344E1D801A792E990081E5E7 /* cef_context_menu_handler_capi.h */,
+				344E1D811A792E990081E5E7 /* cef_cookie_capi.h */,
+				344E1D821A792E990081E5E7 /* cef_dialog_handler_capi.h */,
+				344E1D831A792E990081E5E7 /* cef_display_handler_capi.h */,
+				344E1D841A792E990081E5E7 /* cef_dom_capi.h */,
+				344E1D851A792E990081E5E7 /* cef_download_handler_capi.h */,
+				344E1D861A792E990081E5E7 /* cef_download_item_capi.h */,
+				344E1D871A792E990081E5E7 /* cef_drag_data_capi.h */,
+				344E1D881A792E990081E5E7 /* cef_drag_handler_capi.h */,
+				344E1D891A792E990081E5E7 /* cef_focus_handler_capi.h */,
+				344E1D8A1A792E990081E5E7 /* cef_frame_capi.h */,
+				344E1D8B1A792E990081E5E7 /* cef_geolocation_capi.h */,
+				344E1D8C1A792E990081E5E7 /* cef_geolocation_handler_capi.h */,
+				344E1D8D1A792E990081E5E7 /* cef_jsdialog_handler_capi.h */,
+				344E1D8E1A792E990081E5E7 /* cef_keyboard_handler_capi.h */,
+				344E1D8F1A792E990081E5E7 /* cef_life_span_handler_capi.h */,
+				344E1D901A792E990081E5E7 /* cef_load_handler_capi.h */,
+				344E1D911A792E990081E5E7 /* cef_menu_model_capi.h */,
+				344E1D921A792E990081E5E7 /* cef_navigation_entry_capi.h */,
+				344E1D931A792E990081E5E7 /* cef_origin_whitelist_capi.h */,
+				344E1D941A792E990081E5E7 /* cef_path_util_capi.h */,
+				344E1D951A792E990081E5E7 /* cef_print_handler_capi.h */,
+				344E1D961A792E990081E5E7 /* cef_print_settings_capi.h */,
+				344E1D971A792E990081E5E7 /* cef_process_message_capi.h */,
+				344E1D981A792E990081E5E7 /* cef_process_util_capi.h */,
+				344E1D991A792E990081E5E7 /* cef_render_handler_capi.h */,
+				344E1D9A1A792E990081E5E7 /* cef_render_process_handler_capi.h */,
+				344E1D9B1A792E990081E5E7 /* cef_request_capi.h */,
+				344E1D9C1A792E990081E5E7 /* cef_request_context_capi.h */,
+				344E1D9D1A792E990081E5E7 /* cef_request_context_handler_capi.h */,
+				344E1D9E1A792E990081E5E7 /* cef_request_handler_capi.h */,
+				344E1D9F1A792E990081E5E7 /* cef_resource_bundle_handler_capi.h */,
+				344E1DA01A792E990081E5E7 /* cef_resource_handler_capi.h */,
+				344E1DA11A792E990081E5E7 /* cef_response_capi.h */,
+				344E1DA21A792E990081E5E7 /* cef_scheme_capi.h */,
+				344E1DA31A792E990081E5E7 /* cef_stream_capi.h */,
+				344E1DA41A792E990081E5E7 /* cef_string_visitor_capi.h */,
+				344E1DA51A792E990081E5E7 /* cef_task_capi.h */,
+				344E1DA61A792E990081E5E7 /* cef_trace_capi.h */,
+				344E1DA71A792E990081E5E7 /* cef_url_capi.h */,
+				344E1DA81A792E990081E5E7 /* cef_urlrequest_capi.h */,
+				344E1DA91A792E990081E5E7 /* cef_v8_capi.h */,
+				344E1DAA1A792E990081E5E7 /* cef_values_capi.h */,
+				344E1DAB1A792E990081E5E7 /* cef_web_plugin_capi.h */,
+				344E1DAC1A792E990081E5E7 /* cef_xml_reader_capi.h */,
+				344E1DAD1A792E990081E5E7 /* cef_zip_reader_capi.h */,
+			);
+			path = capi;
+			sourceTree = "<group>";
+		};
+		344E1DE91A792E990081E5E7 /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				344E1DEA1A792E990081E5E7 /* cef_export.h */,
+				344E1DEB1A792E990081E5E7 /* cef_logging_internal.h */,
+				344E1DEC1A792E990081E5E7 /* cef_mac.h */,
+				344E1DED1A792E990081E5E7 /* cef_ptr.h */,
+				344E1DEE1A792E990081E5E7 /* cef_string.h */,
+				344E1DEF1A792E990081E5E7 /* cef_string_list.h */,
+				344E1DF01A792E990081E5E7 /* cef_string_map.h */,
+				344E1DF11A792E990081E5E7 /* cef_string_multimap.h */,
+				344E1DF21A792E990081E5E7 /* cef_string_types.h */,
+				344E1DF31A792E990081E5E7 /* cef_string_wrappers.h */,
+				344E1DF41A792E990081E5E7 /* cef_thread_internal.h */,
+				344E1DF51A792E990081E5E7 /* cef_time.h */,
+				344E1DF61A792E990081E5E7 /* cef_trace_event_internal.h */,
+				344E1DF71A792E990081E5E7 /* cef_types.h */,
+				344E1DF81A792E990081E5E7 /* cef_types_mac.h */,
+				344E1DF91A792E990081E5E7 /* cef_types_wrappers.h */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
+		344E1DFA1A792E990081E5E7 /* wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				344E1DFB1A792E990081E5E7 /* cef_byte_read_handler.h */,
+				344E1DFC1A792E990081E5E7 /* cef_closure_task.h */,
+				344E1DFD1A792E990081E5E7 /* cef_helpers.h */,
+				344E1DFE1A792E990081E5E7 /* cef_message_router.h */,
+				344E1DFF1A792E990081E5E7 /* cef_stream_resource_handler.h */,
+				344E1E001A792E990081E5E7 /* cef_xml_object.h */,
+				344E1E011A792E990081E5E7 /* cef_zip_archive.h */,
+			);
+			path = wrapper;
+			sourceTree = "<group>";
+		};
+		344E1E051A792F130081E5E7 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				344E1E061A792F130081E5E7 /* change_mach_o_flags.py */,
+				344E1E071A792F130081E5E7 /* change_mach_o_flags_from_xcode.sh */,
+				344E1E081A792F130081E5E7 /* make_more_helpers.sh */,
+				344E1E091A792F130081E5E7 /* README-TRANSFER.txt */,
+				344E1E0A1A792F130081E5E7 /* strip_from_xcode */,
+				344E1E0B1A792F130081E5E7 /* strip_save_dsym */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		344E1E111A792F3F0081E5E7 /* CefWithIOSurface Helper */ = {
+			isa = PBXGroup;
+			children = (
+				344E1E121A792F3F0081E5E7 /* Supporting Files */,
+				344E1E301A792F840081E5E7 /* cef_helper_app.cpp */,
+			);
+			path = "CefWithIOSurface Helper";
+			sourceTree = "<group>";
+		};
+		344E1E121A792F3F0081E5E7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				344E1E131A792F3F0081E5E7 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		344E1D241A792E160081E5E7 /* CefWithIOSurface */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 344E1D421A792E160081E5E7 /* Build configuration list for PBXNativeTarget "CefWithIOSurface" */;
+			buildPhases = (
+				344E1D211A792E160081E5E7 /* Sources */,
+				344E1D221A792E160081E5E7 /* Frameworks */,
+				344E1D231A792E160081E5E7 /* Resources */,
+				344E1E371A792FDA0081E5E7 /* CopyFiles */,
+				344E1E391A792FF10081E5E7 /* ShellScript */,
+				344E1E3A1A7930050081E5E7 /* CopyFiles */,
+				344E1E3C1A7930200081E5E7 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				344E1E361A792FC80081E5E7 /* PBXTargetDependency */,
+			);
+			name = CefWithIOSurface;
+			productName = CefWithIOSurface;
+			productReference = 344E1D251A792E160081E5E7 /* CefWithIOSurface.app */;
+			productType = "com.apple.product-type.application";
+		};
+		344E1E0F1A792F3F0081E5E7 /* CefWithIOSurface Helper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 344E1E2A1A792F400081E5E7 /* Build configuration list for PBXNativeTarget "CefWithIOSurface Helper" */;
+			buildPhases = (
+				344E1E0C1A792F3F0081E5E7 /* Sources */,
+				344E1E0D1A792F3F0081E5E7 /* Frameworks */,
+				344E1E0E1A792F3F0081E5E7 /* Resources */,
+				344E1E341A792FA60081E5E7 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CefWithIOSurface Helper";
+			productName = "CefWithIOSurface Helper";
+			productReference = 344E1E101A792F3F0081E5E7 /* CefWithIOSurface Helper.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		344E1D1D1A792E160081E5E7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Zakk;
+				TargetAttributes = {
+					344E1D241A792E160081E5E7 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					344E1E0F1A792F3F0081E5E7 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = 344E1D201A792E160081E5E7 /* Build configuration list for PBXProject "CefWithIOSurface" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 344E1D1C1A792E160081E5E7;
+			productRefGroup = 344E1D261A792E160081E5E7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				344E1D241A792E160081E5E7 /* CefWithIOSurface */,
+				344E1E0F1A792F3F0081E5E7 /* CefWithIOSurface Helper */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		344E1D231A792E160081E5E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		344E1E0E1A792F3F0081E5E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		344E1E341A792FA60081E5E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "exec install_name_tool -change \"@executable_path/Chromium Embedded Framework\" \"@executable_path/../../../../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nexit 1\n";
+		};
+		344E1E391A792FF10081E5E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "exec install_name_tool -change \"@executable_path/Chromium Embedded Framework\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nexit 1\n";
+		};
+		344E1E3C1A7930200081E5E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "exec tools/make_more_helpers.sh Frameworks CefWithIOSurface\nexit 1\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		344E1D211A792E160081E5E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				344E1D2E1A792E160081E5E7 /* main.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		344E1E0C1A792F3F0081E5E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				344E1E311A792F840081E5E7 /* cef_helper_app.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		344E1E361A792FC80081E5E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 344E1E0F1A792F3F0081E5E7 /* CefWithIOSurface Helper */;
+			targetProxy = 344E1E351A792FC80081E5E7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		344E1D401A792E160081E5E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		344E1D411A792E160081E5E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		344E1D431A792E160081E5E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = CefWithIOSurface/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = "-Wl,-headerpad_max_install_names";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$SRCROOT/**";
+			};
+			name = Debug;
+		};
+		344E1D441A792E160081E5E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = CefWithIOSurface/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = "-Wl,-headerpad_max_install_names";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$SRCROOT/**";
+			};
+			name = Release;
+		};
+		344E1E2B1A792F400081E5E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CefWithIOSurface Helper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = "-Wl,-headerpad_max_install_names";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = $SRCROOT;
+			};
+			name = Debug;
+		};
+		344E1E2C1A792F400081E5E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "CefWithIOSurface Helper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = "-Wl,-headerpad_max_install_names";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = $SRCROOT;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		344E1D201A792E160081E5E7 /* Build configuration list for PBXProject "CefWithIOSurface" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				344E1D401A792E160081E5E7 /* Debug */,
+				344E1D411A792E160081E5E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		344E1D421A792E160081E5E7 /* Build configuration list for PBXNativeTarget "CefWithIOSurface" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				344E1D431A792E160081E5E7 /* Debug */,
+				344E1D441A792E160081E5E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		344E1E2A1A792F400081E5E7 /* Build configuration list for PBXNativeTarget "CefWithIOSurface Helper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				344E1E2B1A792F400081E5E7 /* Debug */,
+				344E1E2C1A792F400081E5E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 344E1D1D1A792E160081E5E7 /* Project object */;
+}

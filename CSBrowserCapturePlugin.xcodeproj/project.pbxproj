@@ -6,9 +6,76 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		344E1E4C1A7932E40081E5E7 /* CSBrowserCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 344E1E4B1A7932E40081E5E7 /* CSBrowserCapture.m */; };
+		344E1E4F1A79337F0081E5E7 /* CSBrowserTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 344E1E4E1A79337F0081E5E7 /* CSBrowserTaskManager.m */; };
+		344E1E641A7946400081E5E7 /* CSBrowserCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344E1E621A7946400081E5E7 /* CSBrowserCaptureViewController.m */; };
+		344E1E651A7946400081E5E7 /* CSBrowserCaptureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 344E1E631A7946400081E5E7 /* CSBrowserCaptureViewController.xib */; };
+		344E1E671A7947040081E5E7 /* CefWithIOSurface.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 344E1D4E1A792E170081E5E7 /* CefWithIOSurface.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		344E1D4D1A792E170081E5E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 344E1D481A792E160081E5E7 /* CefWithIOSurface.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 344E1D251A792E160081E5E7;
+			remoteInfo = CefWithIOSurface;
+		};
+		344E1E3D1A7931090081E5E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 344E1D481A792E160081E5E7 /* CefWithIOSurface.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 344E1D241A792E160081E5E7;
+			remoteInfo = CefWithIOSurface;
+		};
+		344E1E401A7931090081E5E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 344E1D481A792E160081E5E7 /* CefWithIOSurface.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 344E1E101A792F3F0081E5E7;
+			remoteInfo = "CefWithIOSurface Helper";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		344E1E661A7946F20081E5E7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 12;
+			files = (
+				344E1E671A7947040081E5E7 /* CefWithIOSurface.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		344E1D121A792DED0081E5E7 /* CSBrowserCapturePlugin.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CSBrowserCapturePlugin.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		344E1D161A792DED0081E5E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		344E1D481A792E160081E5E7 /* CefWithIOSurface.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CefWithIOSurface.xcodeproj; path = CefWithIOSurface/CefWithIOSurface.xcodeproj; sourceTree = "<group>"; };
+		344E1E4A1A7932E40081E5E7 /* CSBrowserCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSBrowserCapture.h; sourceTree = "<group>"; };
+		344E1E4B1A7932E40081E5E7 /* CSBrowserCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSBrowserCapture.m; sourceTree = "<group>"; };
+		344E1E4D1A79337F0081E5E7 /* CSBrowserTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSBrowserTaskManager.h; sourceTree = "<group>"; };
+		344E1E4E1A79337F0081E5E7 /* CSBrowserTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSBrowserTaskManager.m; sourceTree = "<group>"; };
+		344E1E501A7933AD0081E5E7 /* CSRemoteBrowserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSRemoteBrowserProtocol.h; sourceTree = "<group>"; };
+		344E1E541A79440F0081E5E7 /* CAMultiAudioPCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMultiAudioPCM.h; sourceTree = "<group>"; };
+		344E1E551A79440F0081E5E7 /* CSAbstractCaptureDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAbstractCaptureDevice.h; sourceTree = "<group>"; };
+		344E1E561A79440F0081E5E7 /* CSCaptureBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCaptureBase.h; sourceTree = "<group>"; };
+		344E1E571A79440F0081E5E7 /* CSCaptureSourceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCaptureSourceProtocol.h; sourceTree = "<group>"; };
+		344E1E581A79440F0081E5E7 /* CSExtraPluginProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSExtraPluginProtocol.h; sourceTree = "<group>"; };
+		344E1E591A79440F0081E5E7 /* CSIOSurfaceLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSIOSurfaceLayer.h; sourceTree = "<group>"; };
+		344E1E5A1A79440F0081E5E7 /* CSNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNotifications.h; sourceTree = "<group>"; };
+		344E1E5B1A79440F0081E5E7 /* CSPcmPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPcmPlayer.h; sourceTree = "<group>"; };
+		344E1E5C1A79440F0081E5E7 /* CSPluginFactoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPluginFactoryProtocol.h; sourceTree = "<group>"; };
+		344E1E5D1A79440F0081E5E7 /* CSPluginServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPluginServices.h; sourceTree = "<group>"; };
+		344E1E5E1A79440F0081E5E7 /* CSStreamServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSStreamServiceProtocol.h; sourceTree = "<group>"; };
+		344E1E5F1A79440F0081E5E7 /* CSTextCaptureBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTextCaptureBase.h; sourceTree = "<group>"; };
+		344E1E601A79440F0081E5E7 /* CSTextCaptureViewControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTextCaptureViewControllerBase.h; sourceTree = "<group>"; };
+		344E1E611A7946400081E5E7 /* CSBrowserCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSBrowserCaptureViewController.h; sourceTree = "<group>"; };
+		344E1E621A7946400081E5E7 /* CSBrowserCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSBrowserCaptureViewController.m; sourceTree = "<group>"; };
+		344E1E631A7946400081E5E7 /* CSBrowserCaptureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSBrowserCaptureViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -25,6 +92,7 @@
 		344E1D091A792DED0081E5E7 = {
 			isa = PBXGroup;
 			children = (
+				344E1D481A792E160081E5E7 /* CefWithIOSurface.xcodeproj */,
 				344E1D141A792DED0081E5E7 /* CSBrowserCapturePlugin */,
 				344E1D131A792DED0081E5E7 /* Products */,
 			);
@@ -41,7 +109,16 @@
 		344E1D141A792DED0081E5E7 /* CSBrowserCapturePlugin */ = {
 			isa = PBXGroup;
 			children = (
+				344E1E531A79440F0081E5E7 /* PluginHeaders */,
 				344E1D151A792DED0081E5E7 /* Supporting Files */,
+				344E1E4A1A7932E40081E5E7 /* CSBrowserCapture.h */,
+				344E1E4B1A7932E40081E5E7 /* CSBrowserCapture.m */,
+				344E1E4D1A79337F0081E5E7 /* CSBrowserTaskManager.h */,
+				344E1E4E1A79337F0081E5E7 /* CSBrowserTaskManager.m */,
+				344E1E501A7933AD0081E5E7 /* CSRemoteBrowserProtocol.h */,
+				344E1E611A7946400081E5E7 /* CSBrowserCaptureViewController.h */,
+				344E1E621A7946400081E5E7 /* CSBrowserCaptureViewController.m */,
+				344E1E631A7946400081E5E7 /* CSBrowserCaptureViewController.xib */,
 			);
 			path = CSBrowserCapturePlugin;
 			sourceTree = "<group>";
@@ -54,6 +131,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		344E1D491A792E160081E5E7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				344E1D4E1A792E170081E5E7 /* CefWithIOSurface.app */,
+				344E1E411A7931090081E5E7 /* CefWithIOSurface Helper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		344E1E531A79440F0081E5E7 /* PluginHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				344E1E541A79440F0081E5E7 /* CAMultiAudioPCM.h */,
+				344E1E551A79440F0081E5E7 /* CSAbstractCaptureDevice.h */,
+				344E1E561A79440F0081E5E7 /* CSCaptureBase.h */,
+				344E1E571A79440F0081E5E7 /* CSCaptureSourceProtocol.h */,
+				344E1E581A79440F0081E5E7 /* CSExtraPluginProtocol.h */,
+				344E1E591A79440F0081E5E7 /* CSIOSurfaceLayer.h */,
+				344E1E5A1A79440F0081E5E7 /* CSNotifications.h */,
+				344E1E5B1A79440F0081E5E7 /* CSPcmPlayer.h */,
+				344E1E5C1A79440F0081E5E7 /* CSPluginFactoryProtocol.h */,
+				344E1E5D1A79440F0081E5E7 /* CSPluginServices.h */,
+				344E1E5E1A79440F0081E5E7 /* CSStreamServiceProtocol.h */,
+				344E1E5F1A79440F0081E5E7 /* CSTextCaptureBase.h */,
+				344E1E601A79440F0081E5E7 /* CSTextCaptureViewControllerBase.h */,
+			);
+			path = PluginHeaders;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -64,10 +170,12 @@
 				344E1D0E1A792DED0081E5E7 /* Sources */,
 				344E1D0F1A792DED0081E5E7 /* Frameworks */,
 				344E1D101A792DED0081E5E7 /* Resources */,
+				344E1E661A7946F20081E5E7 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				344E1E3E1A7931090081E5E7 /* PBXTargetDependency */,
 			);
 			name = CSBrowserCapturePlugin;
 			productName = CSBrowserCapturePlugin;
@@ -98,6 +206,12 @@
 			mainGroup = 344E1D091A792DED0081E5E7;
 			productRefGroup = 344E1D131A792DED0081E5E7 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 344E1D491A792E160081E5E7 /* Products */;
+					ProjectRef = 344E1D481A792E160081E5E7 /* CefWithIOSurface.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				344E1D111A792DED0081E5E7 /* CSBrowserCapturePlugin */,
@@ -105,11 +219,29 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		344E1D4E1A792E170081E5E7 /* CefWithIOSurface.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CefWithIOSurface.app;
+			remoteRef = 344E1D4D1A792E170081E5E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		344E1E411A7931090081E5E7 /* CefWithIOSurface Helper.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "CefWithIOSurface Helper.app";
+			remoteRef = 344E1E401A7931090081E5E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		344E1D101A792DED0081E5E7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				344E1E651A7946400081E5E7 /* CSBrowserCaptureViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,10 +252,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				344E1E4F1A79337F0081E5E7 /* CSBrowserTaskManager.m in Sources */,
+				344E1E4C1A7932E40081E5E7 /* CSBrowserCapture.m in Sources */,
+				344E1E641A7946400081E5E7 /* CSBrowserCaptureViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		344E1E3E1A7931090081E5E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CefWithIOSurface;
+			targetProxy = 344E1E3D1A7931090081E5E7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		344E1D171A792DED0081E5E7 /* Debug */ = {
@@ -206,8 +349,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = CSBrowserCapturePlugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-flat_namespace",
+					"-undefined",
+					suppress,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -218,8 +366,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = CSBrowserCapturePlugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-flat_namespace",
+					"-undefined",
+					suppress,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -243,6 +396,7 @@
 				344E1D1B1A792DED0081E5E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
