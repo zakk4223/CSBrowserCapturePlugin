@@ -81,6 +81,13 @@ public:
     BrowserClient(RenderHandler *renderhandler) : m_renderHandler(renderhandler)
     {;}
     
+    ~BrowserClient()
+    {
+        NSLog(@"BROWSER CLIENT DESTROYED");
+
+        m_renderHandler = NULL;
+    }
+
     virtual CefRefPtr<CefRenderHandler> GetRenderHandler() {
         return m_renderHandler;
     }
@@ -97,9 +104,15 @@ public:
         m_useCount++;
     }
     
+    void CloseBrowser()
+    {
+        m_Browser->GetHost()->CloseBrowser(true);
+        m_Browser = NULL;
+    }
     int m_useCount = 0;
     CefRefPtr<CefBrowser> m_Browser;
     CefRefPtr<CefRenderHandler> m_renderHandler;
+    
     
     IMPLEMENT_REFCOUNTING(BrowserClient);
 };
@@ -161,7 +174,9 @@ public:
         browserClient->m_useCount--;
         if (browserClient->m_useCount <= 0)
         {
-            browserClient->m_Browser->GetHost()->CloseBrowser(true);
+            browserClient->CloseBrowser();
+            _urlMap.erase(stdurl);
+            browserClient = NULL;
         }
     }
     
@@ -188,7 +203,7 @@ public:
         
         browserClient = new BrowserClient(renderHandler);
         
-        CefBrowserHost::CreateBrowser(window_info, browserClient.get(), [url UTF8String], browserSettings, NULL);
+        CefBrowserHost::CreateBrowser(window_info, browserClient, [url UTF8String], browserSettings, NULL);
         _urlMap[stdurl] = browserClient;
     } else {
         browserClient->m_useCount++;
@@ -211,7 +226,6 @@ int main(int argc, char * argv[]) {
         CefMainArgs args(argc, argv);
         
         
-        NSLog(@"PRE EXECUTE PROCESS PARENT: %d MINE: %d", getppid(), getpid());
         int result = CefExecuteProcess(args, NULL,NULL);
         
         
@@ -226,7 +240,6 @@ int main(int argc, char * argv[]) {
         }
         
         
-        NSLog(@"POST EXECUTE PROCESS PARENT: %d MINE: %d", getppid(), getpid());
 
         
         CefSettings settings;
@@ -236,7 +249,6 @@ int main(int argc, char * argv[]) {
         const CefString tvalue;
         
         CefString teststr = cmdline.get()->GetSwitchValue("cs_connection_name");
-        NSLog(@"TEST CMD %@", [NSString stringWithUTF8String:teststr.ToString().c_str()]);
         
         RemoteInterface *rmi = [[RemoteInterface alloc] init];
         NSConnection *server = [NSConnection new];
@@ -252,7 +264,6 @@ int main(int argc, char * argv[]) {
             return -1;
         }
         
-        NSLog(@"PRE WATCHDOG  PARENT: %d MINE: %d", getppid(), getpid());
 
         ParentWatcher *watchdog = [[ParentWatcher alloc] init];
         [watchdog start];

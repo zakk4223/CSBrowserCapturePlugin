@@ -40,6 +40,15 @@
 }
 
 
+-(void)willDelete
+{
+    if (_taskManager)
+    {
+        [_taskManager closeURL:_url];
+    }
+}
+
+
 +(NSString *)label
 {
     return @"Browser Capture";
@@ -60,10 +69,16 @@
 
 -(void)setUrl:(NSString *)url
 {
-    NSLog(@"SETTING URL TO %@", url);
+    
+    if (_url)
+    {
+        [_taskManager closeURL:_url];
+    }
     
     _url = url;
     _surfaceID = [_taskManager loadURL:url];
+    self.activeVideoDevice.uniqueID = url;
+    self.captureName = url;
     if (_surfaceID)
     {
         _browserSurface = IOSurfaceLookup(_surfaceID);

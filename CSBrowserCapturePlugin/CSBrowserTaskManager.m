@@ -32,6 +32,8 @@
         _browserPid = 0;
     }
     
+    [self createRemoteObject];
+    
     return self;
 }
 
@@ -47,6 +49,7 @@
 {
     [self createRemoteObject];
     
+    NSLog(@"TASK MANAGER CLOSE URL %@", url);
     [_remoteObject closeURL:url];
 }
 
@@ -81,27 +84,6 @@
     
     NSBundle *browserBundle = [NSBundle bundleWithPath:browserPath];
     NSString *executablePath = [browserBundle executablePath];
-    /*
-    NSString *oargs = [NSString stringWithFormat:@"--cs_connection_name=%@", _connectionName];
-    char *args[1];
-    args[0] = (char *)[oargs UTF8String];
-    
-    const char *epath = [executablePath UTF8String];
-    NSLog(@"BROWSER PATH IS %@", executablePath);
-    
-    pid_t npid = vfork();
-    
-    if (!npid)
-    {
-        //in child
-        execve(epath, NULL, NULL);
-    } else {
-        _browserPid = npid;
-    }
-    */
-    
-    NSLog(@"MY PID IS %d", getpid());
-    
     _browserTask = [NSTask launchedTaskWithLaunchPath:executablePath arguments:@[[NSString stringWithFormat:@"--cs_connection_name=%@", _connectionName]]];
     
 }
