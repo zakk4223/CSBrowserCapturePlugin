@@ -22,12 +22,18 @@ class RenderHandler : public CefRenderHandler
 {
 public:
     IOSurfaceRef m_iosurface;
+    int          m_width;
+    int          m_height;
     
     RenderHandler()
     {
+        
+        m_width = 1280;
+        m_height = 720;
+        
         NSDictionary *sAttrs = @{(NSString *)kIOSurfaceIsGlobal: @YES,
-                                 (NSString *)kIOSurfaceWidth: @640,
-                                 (NSString *)kIOSurfaceHeight: @480,
+                                 (NSString *)kIOSurfaceWidth: @(m_width),
+                                 (NSString *)kIOSurfaceHeight: @(m_height),
                                  (NSString *)kIOSurfaceBytesPerElement: @4,
                                  (NSString *)kIOSurfacePixelFormat:@(kCVPixelFormatType_32BGRA)};
         
@@ -39,24 +45,87 @@ public:
     {
         if (m_iosurface)
         {
-            NSLog(@"DEALLOCATE IOSURFACE");
             CFRelease(m_iosurface);
             m_iosurface = NULL;
         }
         
     }
+    
+    void CreateIOSurface()
+    {
+        
+        IOSurfaceRef newSurface;
+        size_t current_width = 0;
+        size_t current_height = 0;
+        
+        if (m_iosurface)
+        {
+            current_width = IOSurfaceGetWidth(m_iosurface);
+            current_height = IOSurfaceGetHeight(m_iosurface);
+        }
+        
+        if (m_width != current_width || m_height != current_height)
+        {
+            if (m_iosurface)
+            {
+                CFRelease(m_iosurface);
+                m_iosurface = NULL;
+            }
+            
+
+            NSDictionary *sAttrs = @{(NSString *)kIOSurfaceIsGlobal: @YES,
+                                     (NSString *)kIOSurfaceWidth: @(m_width),
+                                     (NSString *)kIOSurfaceHeight: @(m_height),
+                                     (NSString *)kIOSurfaceBytesPerElement: @4,
+                                     (NSString *)kIOSurfacePixelFormat:@(kCVPixelFormatType_32BGRA)};
+            
+            newSurface = IOSurfaceCreate((__bridge CFDictionaryRef)sAttrs);
+            
+            IOSurfaceRef oldSurface = m_iosurface;
+            m_iosurface = newSurface;
+            
+            if (oldSurface)
+            {
+                CFRelease(oldSurface);
+            }
+        }
+    }
+    
+    
+    
+    void Resize(int width, int height)
+    {
+        m_width = width;
+        m_height = height;
+        CreateIOSurface();
+    }
+    
+    
     bool GetViewRect(CefRefPtr<CefBrowser> browser, CefRect &rect)
     {
-        rect = CefRect(0,0, 640,480);
+        
+        rect = CefRect(0,0, m_width,m_height);
         return true;
     }
+    
+    
     void OnPaint(CefRefPtr<CefBrowser> browser, PaintElementType type, const RectList &dirtyRects, const void *buffer, int width, int height)
     {
+        
         if (!m_iosurface)
         {
             return;
         }
         
+        size_t s_width = IOSurfaceGetWidth(m_iosurface);
+        size_t s_height = IOSurfaceGetHeight(m_iosurface);
+        
+        if (s_width != width || s_height != height)
+        {
+            //strange things are afoot. (but probably just a resize in progress)
+            return;
+        }
+
         IOSurfaceLock(m_iosurface, 0, NULL);
         void *surfBase = IOSurfaceGetBaseAddress(m_iosurface);
         memcpy(surfBase, buffer, width*height*4);
@@ -101,6 +170,7 @@ public:
     void OnAfterCreated(CefRefPtr<CefBrowser>browser)
     {
         m_Browser = browser;
+        
         m_useCount++;
     }
     
@@ -137,7 +207,6 @@ public:
     
     kevent(fd, &kev, 1, &kev, 1, NULL);
     
-    NSLog(@"PARENT EXITED!!!!");
     exit(0);
     
     //CefShutdown();
@@ -156,10 +225,39 @@ public:
 
 -(IOSurfaceID)loadURL:(NSString *)url;
 -(void)closeURL:(NSString *)url;
+-(IOSurfaceID)resizeURL:(NSString *)url width:(int)width height:(int)height;
 
 @end
 
 @implementation RemoteInterface
+
+
+-(IOSurfaceID)resizeURL:(NSString *)url width:(int)width height:(int)height;
+{
+    
+    IOSurfaceID retVal = 0;
+    
+    std::string stdurl([url UTF8String]);
+    
+    CefRefPtr<BrowserClient> browserClient;
+    
+    browserClient = _urlMap[stdurl];
+    
+    if (browserClient && browserClient->m_Browser)
+    {
+        CefRefPtr<CefRenderHandler> rhbase = browserClient->GetRenderHandler();
+        CefRefPtr<RenderHandler> retHandler = static_cast<RenderHandler *>(rhbase.get());
+
+        retHandler->Resize(width, height);
+
+        browserClient->m_Browser->GetHost()->WasResized();
+        retVal = IOSurfaceGetID(retHandler->m_iosurface);
+    }
+    
+    return retVal;
+}
+
+
 
 -(void)closeURL:(NSString *)url
 {

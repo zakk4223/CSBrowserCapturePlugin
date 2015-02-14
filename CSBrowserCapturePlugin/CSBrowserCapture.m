@@ -18,8 +18,12 @@
     if (self = [super init])
     {
         _taskManager = [CSBrowserTaskManager sharedBrowserTaskManager];
+        
         self.activeVideoDevice = [[CSAbstractCaptureDevice alloc] init];
+    
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(urlWasResized:) name:CSBrowserCaptureNotificationURLResized object:nil];
     }
+    
     
     return self;
 }
@@ -34,6 +38,27 @@
 }
 
 
+
+-(void)urlWasResized:(NSNotification *)notification
+{
+    if(!_url)
+    {
+        return;
+    }
+    
+    NSString *notificationURL = (NSString *)notification.object;
+    
+    if ([notificationURL isEqualToString:_url])
+    {
+        //WE CARE ALOT
+        
+        //trickery. set _url to nil so we don't try to close it and possibly destroy the backing window
+        _url = nil;
+        self.url = notificationURL;
+    }
+}
+
+
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.url forKey:@"url"];
@@ -42,6 +67,9 @@
 
 -(void)willDelete
 {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     if (_taskManager)
     {
         [_taskManager closeURL:_url];
@@ -57,6 +85,7 @@
 
 -(CALayer *)createNewLayer
 {
+    
     CSIOSurfaceLayer *newLayer = [CSIOSurfaceLayer layer];
     if (_browserSurface)
     {
@@ -67,9 +96,17 @@
 }
 
 
+
+-(void)resize
+{
+    [_taskManager resizeURL:_url width:self.browser_width height:self.browser_height];
+}
+
+
 -(void)setUrl:(NSString *)url
 {
     
+    IOSurfaceRef oldSurface = _browserSurface;
     if (_url)
     {
         [_taskManager closeURL:_url];
@@ -86,11 +123,20 @@
     
     if (_browserSurface)
     {
+        self.browser_width = (int)IOSurfaceGetWidth(_browserSurface);
+        self.browser_height = (int)IOSurfaceGetHeight(_browserSurface);
+        
         [self updateLayersWithBlock:^(CALayer *layer) {
             ((CSIOSurfaceLayer *)layer).ioSurface = _browserSurface;
         }];
     }
+    
+    if (oldSurface)
+    {
+        CFRelease(oldSurface);
+    }
 }
+
 
 
 -(NSString *)url

@@ -13,5 +13,6 @@
 
 @property CSBrowserCapture *captureObj;
 
+- (IBAction)resizeBrowser:(id)sender;
 
 @end

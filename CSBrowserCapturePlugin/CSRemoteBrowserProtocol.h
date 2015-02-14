@@ -12,5 +12,7 @@
 
 -(IOSurfaceID)loadURL:(NSString *)url;
 -(void)closeURL:(NSString *)url;
+-(IOSurfaceID)resizeURL:(NSString *)url width:(int)width height:(int)height;
+
 
 @end

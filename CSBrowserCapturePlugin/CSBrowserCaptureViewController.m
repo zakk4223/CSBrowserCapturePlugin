@@ -19,4 +19,13 @@
     // Do view setup here.
 }
 
+- (IBAction)resizeBrowser:(id)sender
+{
+    if (self.captureObj)
+    {
+        [(CSBrowserCapture *)self.captureObj resize];
+    }
+}
+
+
 @end

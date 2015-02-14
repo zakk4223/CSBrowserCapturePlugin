@@ -21,5 +21,8 @@
 }
 
 @property (strong) NSString *url;
+@property (assign) int browser_width;
+@property (assign) int browser_height;
+-(void)resize;
 
 @end

@@ -10,6 +10,8 @@
 #import "CSRemoteBrowserProtocol.h"
 
 
+extern NSString *const CSBrowserCaptureNotificationURLResized;
+
 @interface CSBrowserTaskManager : NSObject
 {
     NSTask *_browserTask;
@@ -23,5 +25,8 @@
 
 -(IOSurfaceID)loadURL:(NSString *)url;
 -(void)closeURL:(NSString *)url;
+-(void)resizeURL:(NSString *)url width:(int)width height:(int)height;
+
+
 
 @end

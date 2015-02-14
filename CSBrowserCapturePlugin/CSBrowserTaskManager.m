@@ -9,6 +9,9 @@
 #import "CSBrowserTaskManager.h"
 #import "CSRemoteBrowserProtocol.h"
 
+
+NSString *const CSBrowserCaptureNotificationURLResized = @"CSBrowserCaptureNotificationURLResized";
+
 @implementation CSBrowserTaskManager
 
 +(id) sharedBrowserTaskManager
@@ -38,6 +41,17 @@
 }
 
 
+-(void)resizeURL:(NSString *)url width:(int)width height:(int)height
+{
+    [self createRemoteObject];
+    
+    [_remoteObject resizeURL:url width:width height:height];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CSBrowserCaptureNotificationURLResized object:url];
+    
+}
+
+
 -(IOSurfaceID)loadURL:(NSString *)url
 {
     [self createRemoteObject];
@@ -49,7 +63,6 @@
 {
     [self createRemoteObject];
     
-    NSLog(@"TASK MANAGER CLOSE URL %@", url);
     [_remoteObject closeURL:url];
 }
 
