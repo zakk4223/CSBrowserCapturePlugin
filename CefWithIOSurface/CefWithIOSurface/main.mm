@@ -62,7 +62,6 @@ public:
         if (m_width != current_width || m_height != current_height)
         {
             
-            NSLog(@"CREATING IOSURFACE HELLO!!!!!! %dx%d", m_width, m_height);
 
             if (m_iosurface)
             {
