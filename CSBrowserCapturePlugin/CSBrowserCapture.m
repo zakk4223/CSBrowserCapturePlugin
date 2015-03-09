@@ -106,6 +106,7 @@
 -(void)setUrl:(NSString *)url
 {
     
+    
     IOSurfaceRef oldSurface = _browserSurface;
     if (_url)
     {
@@ -123,6 +124,7 @@
     
     if (_browserSurface)
     {
+        
         self.browser_width = (int)IOSurfaceGetWidth(_browserSurface);
         self.browser_height = (int)IOSurfaceGetHeight(_browserSurface);
         

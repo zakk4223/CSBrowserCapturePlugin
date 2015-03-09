@@ -31,13 +31,7 @@ public:
         m_width = 1280;
         m_height = 720;
         
-        NSDictionary *sAttrs = @{(NSString *)kIOSurfaceIsGlobal: @YES,
-                                 (NSString *)kIOSurfaceWidth: @(m_width),
-                                 (NSString *)kIOSurfaceHeight: @(m_height),
-                                 (NSString *)kIOSurfaceBytesPerElement: @4,
-                                 (NSString *)kIOSurfacePixelFormat:@(kCVPixelFormatType_32BGRA)};
-        
-        m_iosurface = IOSurfaceCreate((__bridge CFDictionaryRef)sAttrs);
+        CreateIOSurface();
         
     }
     
@@ -54,6 +48,7 @@ public:
     void CreateIOSurface()
     {
         
+
         IOSurfaceRef newSurface;
         size_t current_width = 0;
         size_t current_height = 0;
@@ -66,6 +61,9 @@ public:
         
         if (m_width != current_width || m_height != current_height)
         {
+            
+            NSLog(@"CREATING IOSURFACE HELLO!!!!!! %dx%d", m_width, m_height);
+
             if (m_iosurface)
             {
                 CFRelease(m_iosurface);
@@ -254,6 +252,8 @@ public:
         retVal = IOSurfaceGetID(retHandler->m_iosurface);
     }
     
+    NSLog(@"RETURNING IO SURFACE IN RESIZE %d", retVal);
+    
     return retVal;
 }
 
@@ -281,14 +281,13 @@ public:
 }
 -(IOSurfaceID)loadURL:(NSString *)url
 {
-    RenderHandler *renderHandler;
-    renderHandler = new RenderHandler();
     
     CefRefPtr<CefBrowser> browser;
     CefRefPtr<BrowserClient> browserClient;
     
     CefWindowInfo window_info;
     CefBrowserSettings browserSettings;
+    CefRefPtr<RenderHandler> retHandler;
     
     
     std::string stdurl([url UTF8String]);
@@ -297,23 +296,30 @@ public:
     
     if (!browserClient)
     {
+        RenderHandler *renderHandler;
+        renderHandler = new RenderHandler();
+
         window_info.SetAsWindowless(NULL, YES);
         
         browserClient = new BrowserClient(renderHandler);
         
         CefBrowserHost::CreateBrowser(window_info, browserClient, [url UTF8String], browserSettings, NULL);
         _urlMap[stdurl] = browserClient;
+        retHandler = renderHandler;
+        
     } else {
         browserClient->m_useCount++;
+        CefRefPtr<CefRenderHandler> rhbase = browserClient->GetRenderHandler();
+        retHandler = static_cast<RenderHandler *>(rhbase.get());
     }
     
     
-    CefRefPtr<CefRenderHandler> rhbase = browserClient->GetRenderHandler();
-    CefRefPtr<RenderHandler> retHandler = static_cast<RenderHandler *>(rhbase.get());
     
-    
-    return IOSurfaceGetID(retHandler->m_iosurface);
+    IOSurfaceID retVal = IOSurfaceGetID(retHandler->m_iosurface);
+
+    return retVal;
 }
+
 
 @end
 int main(int argc, char * argv[]) {
