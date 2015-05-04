@@ -804,8 +804,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "-Wl,-headerpad_max_install_names";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$SRCROOT/**";
 			};
@@ -828,8 +830,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "-Wl,-headerpad_max_install_names";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$SRCROOT/**";
 			};
@@ -856,8 +860,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-Wl,-headerpad_max_install_names";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = $SRCROOT;
 			};
@@ -880,8 +886,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-Wl,-headerpad_max_install_names";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = $SRCROOT;
 			};

@@ -349,12 +349,14 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = CSBrowserCapturePlugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"-flat_namespace",
 					"-undefined",
 					suppress,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -366,12 +368,14 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = CSBrowserCapturePlugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"-flat_namespace",
 					"-undefined",
 					suppress,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = bundle;
 			};

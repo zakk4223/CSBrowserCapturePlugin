@@ -21,6 +21,9 @@
         
         self.activeVideoDevice = [[CSAbstractCaptureDevice alloc] init];
     
+        self.browser_width = 1280;
+        self.browser_height = 720;
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(urlWasResized:) name:CSBrowserCaptureNotificationURLResized object:nil];
     }
     
@@ -32,7 +35,10 @@
 {
     if (self = [super initWithCoder:aDecoder])
     {
+        self.browser_width = [aDecoder decodeIntForKey:@"browser_width"];
+        self.browser_height = [aDecoder decodeIntForKey:@"browser_height"];
         self.url = [aDecoder decodeObjectForKey:@"url"];
+        
     }
     return self;
 }
@@ -62,6 +68,9 @@
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.url forKey:@"url"];
+    [aCoder encodeInt:self.browser_height forKey:@"browser_height"];
+    [aCoder encodeInt:self.browser_width forKey:@"browser_width"];
+    
 }
 
 
@@ -114,9 +123,10 @@
     }
     
     _url = url;
-    _surfaceID = [_taskManager loadURL:url];
+    _surfaceID = [_taskManager loadURL:url width:self.browser_width height:self.browser_height];
     self.activeVideoDevice.uniqueID = url;
     self.captureName = url;
+    
     if (_surfaceID)
     {
         _browserSurface = IOSurfaceLookup(_surfaceID);

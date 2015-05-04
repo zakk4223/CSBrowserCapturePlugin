@@ -23,7 +23,7 @@ extern NSString *const CSBrowserCaptureNotificationURLResized;
 
 +(id)sharedBrowserTaskManager;
 
--(IOSurfaceID)loadURL:(NSString *)url;
+-(IOSurfaceID)loadURL:(NSString *)url width:(int)width height:(int)height;
 -(void)closeURL:(NSString *)url;
 -(void)resizeURL:(NSString *)url width:(int)width height:(int)height;
 

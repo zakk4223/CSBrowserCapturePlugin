@@ -21,15 +21,37 @@
 class RenderHandler : public CefRenderHandler
 {
 public:
-    IOSurfaceRef m_iosurface;
+    IOSurfaceRef m_iosurface = NULL;
     int          m_width;
     int          m_height;
+    
+    
+    RenderHandler(int width, int height)
+    {
+        m_height = height;
+        m_width = width;
+
+        if (!(m_height > 0))
+        {
+            m_height = 720;
+        }
+        
+        if (!(m_width > 0))
+        {
+            m_width = 1280;
+        }
+        
+        m_iosurface = NULL;
+        CreateIOSurface();
+    }
+
     
     RenderHandler()
     {
         
         m_width = 1280;
         m_height = 720;
+        m_iosurface = NULL;
         
         CreateIOSurface();
         
@@ -58,6 +80,7 @@ public:
             current_width = IOSurfaceGetWidth(m_iosurface);
             current_height = IOSurfaceGetHeight(m_iosurface);
         }
+        
         
         if (m_width != current_width || m_height != current_height)
         {
@@ -216,11 +239,10 @@ public:
 {
     std::map<std::string, CefRefPtr<BrowserClient>> _urlMap;
     
-    
 }
 
 
--(IOSurfaceID)loadURL:(NSString *)url;
+-(IOSurfaceID)loadURL:(NSString *)url width:(int)width height:(int)height;
 -(void)closeURL:(NSString *)url;
 -(IOSurfaceID)resizeURL:(NSString *)url width:(int)width height:(int)height;
 
@@ -251,7 +273,6 @@ public:
         retVal = IOSurfaceGetID(retHandler->m_iosurface);
     }
     
-    NSLog(@"RETURNING IO SURFACE IN RESIZE %d", retVal);
     
     return retVal;
 }
@@ -278,7 +299,7 @@ public:
     }
     
 }
--(IOSurfaceID)loadURL:(NSString *)url
+-(IOSurfaceID)loadURL:(NSString *)url width:(int)width height:(int)height
 {
     
     CefRefPtr<CefBrowser> browser;
@@ -296,7 +317,8 @@ public:
     if (!browserClient)
     {
         RenderHandler *renderHandler;
-        renderHandler = new RenderHandler();
+        renderHandler = new RenderHandler(width, height);
+        
 
         window_info.SetAsWindowless(NULL, YES);
         

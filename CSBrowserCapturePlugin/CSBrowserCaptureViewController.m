@@ -14,11 +14,6 @@
 
 @implementation CSBrowserCaptureViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do view setup here.
-}
-
 - (IBAction)resizeBrowser:(id)sender
 {
     if (self.captureObj)

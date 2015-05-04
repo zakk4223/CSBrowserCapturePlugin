@@ -10,7 +10,7 @@
 
 @protocol CSRemoteBrowserProtocol <NSObject>
 
--(IOSurfaceID)loadURL:(NSString *)url;
+-(IOSurfaceID)loadURL:(NSString *)url width:(int)width height:(int)height;
 -(void)closeURL:(NSString *)url;
 -(IOSurfaceID)resizeURL:(NSString *)url width:(int)width height:(int)height;
 

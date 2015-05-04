@@ -52,12 +52,13 @@ NSString *const CSBrowserCaptureNotificationURLResized = @"CSBrowserCaptureNotif
 }
 
 
--(IOSurfaceID)loadURL:(NSString *)url
+-(IOSurfaceID)loadURL:(NSString *)url width:(int)width height:(int)height
 {
     [self createRemoteObject];
     
-    return [_remoteObject loadURL:url];
+    return [_remoteObject loadURL:url width:width height:height];
 }
+
 
 -(void)closeURL:(NSString *)url
 {
@@ -69,17 +70,25 @@ NSString *const CSBrowserCaptureNotificationURLResized = @"CSBrowserCaptureNotif
 
 -(void)createRemoteObject
 {
+    
+    int retrycnt = 0;
     if (_remoteObject)
     {
         return;
     }
     
-    if (!_browserTask || !_browserTask.running)
+    if (!_browserTask || !_browserTask.isRunning)
     {
         [self launchBrowserTask];
     }
     
-    _remoteObject = (NSObject<CSRemoteBrowserProtocol> *)[NSConnection rootProxyForConnectionWithRegisteredName:_connectionName host:nil];
+    while (!_remoteObject && retrycnt <= 100)
+    {
+        _remoteObject = (NSObject<CSRemoteBrowserProtocol> *)[NSConnection rootProxyForConnectionWithRegisteredName:_connectionName host:nil];
+        usleep(1000);
+        
+    }
+    
 }
 
 
