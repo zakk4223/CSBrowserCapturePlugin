@@ -8,15 +8,86 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreVideo/CoreVideo.h>
+#import "CSXPCBrokerProtocol.h"
+#import "CSRemoteBrowserProtocol.h"
+
 #include "cef_app.h"
 #include "cef_client.h"
 #include "cef_render_handler.h"
+#include "wrapper/cef_library_loader.h"
 #include <sys/types.h>
 #include <sys/event.h>
 #include <sys/time.h>
 
+@class RemoteInterface;
 
 
+class CSCefApp : public CefApp
+{
+public:
+    void OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line) override
+    {
+        command_line->AppendSwitchWithValue("autoplay-policy", "no-user-gesture-required");
+        command_line->AppendSwitch("disable-audio-output");
+        command_line->AppendSwitch("use-mock-keychain");
+    }
+public:
+    IMPLEMENT_REFCOUNTING(CSCefApp);
+};
+
+class AudioHandler : public CefAudioHandler
+{
+    
+public:
+    AudioHandler(id<CSRemoteBrowserProtocol> remotePlugin, NSString *remoteUUID) : m_remotePlugin(remotePlugin), m_remoteUUID(remoteUUID)
+    {;}
+    bool GetAudioParameters(CefRefPtr<CefBrowser> browser, CefAudioParameters& params) override
+    {
+        return true;
+    }
+    void OnAudioStreamStarted(CefRefPtr<CefBrowser> browser, const CefAudioParameters& params, int channels) override
+    {
+        m_channelCount = channels;
+        if (m_remotePlugin)
+        {
+            [m_remotePlugin setupAudioStream:params.sample_rate withChannelCount:channels forUUID:m_remoteUUID];
+        }
+    }
+    
+    void OnAudioStreamPacket(CefRefPtr<CefBrowser> browser, const float** data, int frames, int64 pts) override
+    {
+        if (m_remotePlugin)
+        {
+            NSMutableData *audioData = [NSMutableData dataWithLength:sizeof(float)*frames*m_channelCount];
+            
+            int offset = 0;
+            uint8_t *dataPtr = (uint8_t *)audioData.mutableBytes;
+            
+            for(int i = 0; i < m_channelCount; i++)
+            {
+                memcpy(dataPtr+offset, data[i], sizeof(float)*frames);
+                offset += sizeof(float)*frames;
+            }
+            [m_remotePlugin receiveAudioData:audioData frameCount:frames forUUID:m_remoteUUID];
+        }
+    }
+    
+    void OnAudioStreamStopped(CefRefPtr<CefBrowser> browser) override
+    {
+        
+    }
+    
+    void OnAudioStreamError(CefRefPtr<CefBrowser> browser, const CefString& message) override
+    {
+        
+    }
+    int m_channelCount;
+    id<CSRemoteBrowserProtocol> m_remotePlugin;
+    NSString *m_remoteUUID;
+    
+public:
+    IMPLEMENT_REFCOUNTING(AudioHandler);
+};
 
 class RenderHandler : public CefRenderHandler
 {
@@ -121,11 +192,10 @@ public:
     }
     
     
-    bool GetViewRect(CefRefPtr<CefBrowser> browser, CefRect &rect)
+    void GetViewRect(CefRefPtr<CefBrowser> browser, CefRect &rect)
     {
         
         rect = CefRect(0,0, m_width,m_height);
-        return true;
     }
     
     
@@ -161,33 +231,34 @@ public:
 };
 
 
-@class RemoteInterface;
 
 
 class BrowserClient : public CefClient, public CefLifeSpanHandler
 {
 public:
-    BrowserClient(RenderHandler *renderhandler) : m_renderHandler(renderhandler)
+    BrowserClient(RenderHandler *renderhandler, AudioHandler *audiohandler) : m_renderHandler(renderhandler), m_audioHandler(audiohandler)
     {;}
     
     ~BrowserClient()
     {
-        NSLog(@"BROWSER CLIENT DESTROYED");
-
         m_renderHandler = NULL;
     }
 
-    virtual CefRefPtr<CefRenderHandler> GetRenderHandler() {
+    virtual CefRefPtr<CefAudioHandler> GetAudioHandler() override {
+        return m_audioHandler;
+    }
+    
+    virtual CefRefPtr<CefRenderHandler> GetRenderHandler() override {
         return m_renderHandler;
     }
     
-    virtual CefRefPtr<CefLifeSpanHandler> GetLifeSpanHandler()
+    virtual CefRefPtr<CefLifeSpanHandler> GetLifeSpanHandler() override
     {
         return this;
     }
     
     
-    void OnAfterCreated(CefRefPtr<CefBrowser>browser)
+    void OnAfterCreated(CefRefPtr<CefBrowser>browser) override
     {
         m_Browser = browser;
         
@@ -202,6 +273,7 @@ public:
     int m_useCount = 0;
     CefRefPtr<CefBrowser> m_Browser;
     CefRefPtr<CefRenderHandler> m_renderHandler;
+    CefRefPtr<CefAudioHandler> m_audioHandler;
     
     
     IMPLEMENT_REFCOUNTING(BrowserClient);
@@ -235,23 +307,23 @@ public:
     
 }
 @end
-@interface RemoteInterface : NSObject
+@interface RemoteInterface : NSObject<CSRemoteBrowserProtocol>
 {
     std::map<std::string, CefRefPtr<BrowserClient>> _urlMap;
     
 }
 
+@property (strong) RemoteInterface *remotePlugin;
 
--(IOSurfaceID)loadURL:(NSString *)url width:(int)width height:(int)height;
+-(void)loadURL:(NSString *)url width:(int)width height:(int)height withReply:(void (^)(IOSurfaceID ioSurfaceID))replyBlock;
 -(void)closeURL:(NSString *)url;
--(IOSurfaceID)resizeURL:(NSString *)url width:(int)width height:(int)height;
-
+-(void)resizeURL:(NSString *)url width:(int)width height:(int)height withReply:(void (^)(IOSurfaceID ioSurfaceID))replyBlock;
 @end
 
 @implementation RemoteInterface
 
 
--(IOSurfaceID)resizeURL:(NSString *)url width:(int)width height:(int)height;
+-(void)resizeURL:(NSString *)url width:(int)width height:(int)height withReply:(void (^)(IOSurfaceID ioSurfaceID))replyBlock;
 {
     
     IOSurfaceID retVal = 0;
@@ -274,7 +346,10 @@ public:
     }
     
     
-    return retVal;
+    if (replyBlock)
+    {
+        replyBlock(retVal);
+    }
 }
 
 
@@ -299,7 +374,8 @@ public:
     }
     
 }
--(IOSurfaceID)loadURL:(NSString *)url width:(int)width height:(int)height
+
+-(void)loadURL:(NSString *)url width:(int)width height:(int)height withUUID:(NSString *)uuid withReply:(void (^)(IOSurfaceID))replyBlock
 {
     
     CefRefPtr<CefBrowser> browser;
@@ -310,9 +386,9 @@ public:
     CefRefPtr<RenderHandler> retHandler;
     
     
-    std::string stdurl([url UTF8String]);
+    std::string stduuid([uuid UTF8String]);
     
-    browserClient = _urlMap[stdurl];
+    browserClient = _urlMap[stduuid];
     
     if (!browserClient)
     {
@@ -320,12 +396,14 @@ public:
         renderHandler = new RenderHandler(width, height);
         
 
-        window_info.SetAsWindowless(NULL, YES);
+        AudioHandler *audioHandler;
+        audioHandler = new AudioHandler(self.remotePlugin, uuid);
         
-        browserClient = new BrowserClient(renderHandler);
+        window_info.SetAsWindowless(NULL);
+        browserClient = new BrowserClient(renderHandler, audioHandler);
         
-        CefBrowserHost::CreateBrowser(window_info, browserClient, [url UTF8String], browserSettings, NULL);
-        _urlMap[stdurl] = browserClient;
+        CefBrowserHost::CreateBrowser(window_info, browserClient, [url UTF8String], browserSettings, NULL, NULL);
+        _urlMap[stduuid] = browserClient;
         retHandler = renderHandler;
         
     } else {
@@ -338,7 +416,10 @@ public:
     
     IOSurfaceID retVal = IOSurfaceGetID(retHandler->m_iosurface);
 
-    return retVal;
+    if (replyBlock)
+    {
+        replyBlock(retVal);
+    }
 }
 
 
@@ -347,11 +428,19 @@ int main(int argc, char * argv[]) {
     @autoreleasepool {
         
         
+        CefScopedLibraryLoader library_loader;
+        if (!library_loader.LoadInMain())
+        {
+            NSLog(@"CEF LIBRARY LOAD FAILED");
+            return 1;
+        }
         
         CefMainArgs args(argc, argv);
+        CefRefPtr<CSCefApp> myapp(new CSCefApp);
         
         
-        int result = CefExecuteProcess(args, NULL,NULL);
+        
+        int result = CefExecuteProcess(args, myapp,NULL);
         
         
         if (result >= 0)
@@ -368,21 +457,45 @@ int main(int argc, char * argv[]) {
 
         
         CefSettings settings;
-        bool initresult = CefInitialize(args, settings, NULL, NULL);
+    
+        bool initresult = CefInitialize(args, settings, myapp, NULL);
         
         CefRefPtr<CefCommandLine> cmdline = CefCommandLine::GetGlobalCommandLine();
+
         const CefString tvalue;
         
         CefString teststr = cmdline.get()->GetSwitchValue("cs_connection_name");
         
+        
+        NSXPCInterface *brokerInterface = [NSXPCInterface interfaceWithProtocol:@protocol(CSXPCBrokerProtocol)];
+        NSXPCConnection *connection = [[NSXPCConnection alloc] initWithMachServiceName:@"zakk.lol.cocoasplit.broker" options:0];
+        [connection setRemoteObjectInterface:brokerInterface];
+        [connection resume];
+        
+        id<CSXPCBrokerProtocol> brokerObj = [connection synchronousRemoteObjectProxyWithErrorHandler:^(NSError * _Nonnull error) {
+            NSLog(@"CEF NO BROKER CONNECTION");
+        }];
+        
         RemoteInterface *rmi = [[RemoteInterface alloc] init];
-        NSConnection *server = [NSConnection new];
-        
-        
-        
-        server.rootObject = rmi;
-        [server registerName:[NSString stringWithUTF8String:teststr.ToString().c_str()]];
-        
+        NSString *browserUUID = [NSString stringWithUTF8String:teststr.ToString().c_str()];
+        [brokerObj retrieveListenerforUUID:browserUUID withReply:^(NSXPCListenerEndpoint * _Nonnull listener) {
+            NSXPCInterface *pluginInterface = [NSXPCInterface interfaceWithProtocol:@protocol(CSRemoteBrowserProtocol)];
+            
+            NSXPCConnection *pluginConnection = [[NSXPCConnection alloc] initWithListenerEndpoint:listener];
+            pluginConnection.exportedInterface = pluginInterface;
+            pluginConnection.exportedObject = rmi;
+            
+            [pluginConnection setRemoteObjectInterface:pluginInterface];
+
+            [pluginConnection resume];
+            
+            id<CSRemoteBrowserProtocol>pluginObj = [pluginConnection remoteObjectProxyWithErrorHandler:^(NSError * _Nonnull error) {
+                NSLog(@"Error connecting to browser task");
+            }];
+            [pluginObj browserCheckin:browserUUID];
+            rmi.remotePlugin = pluginObj;
+        }];
+                
         
         if (!initresult)
         {

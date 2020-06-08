@@ -3,7 +3,6 @@
 //  CocoaSplit
 //
 //  Created by Zakk on 11/25/14.
-//  Copyright (c) 2014 Zakk. All rights reserved.
 //
 
 #ifndef CocoaSplit_CSPcmPlayer_h
@@ -18,9 +17,16 @@
 
 @property (strong) NSString *name;
 @property (strong) NSString *nodeUID;
+@property (readonly) NSUInteger pendingFrames;
+@property (assign) bool muted;
 
 -(void)scheduleBuffer:(CMSampleBufferRef)sampleBuffer;
 -(bool)playPcmBuffer:(CAMultiAudioPCM *)pcmBuffer;
+-(void)play;
+-(void)pause;
+-(void)flush;
+-(void)setAudioFormat:(AVAudioFormat *)asbd;
+
 
 
 @end

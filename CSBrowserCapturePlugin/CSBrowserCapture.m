@@ -23,7 +23,11 @@
     
         self.browser_width = 1280;
         self.browser_height = 720;
+        self.urlUUID = [[NSUUID UUID] UUIDString];
         
+        _taskManager.xpcUUID = [self createXPCListener];
+        
+        [_taskManager launchBrowserTask];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(urlWasResized:) name:CSBrowserCaptureNotificationURLResized object:nil];
     }
     
@@ -44,6 +48,28 @@
 }
 
 
+
+-(bool)newXPCConnection:(NSXPCConnection *)newConnection forUUID:(NSString *)uuid
+{
+    if (![uuid isEqualToString:_taskManager.xpcUUID])
+    {
+        return NO;
+    }
+    
+    
+    
+    [_taskManager setTaskConnection:newConnection];
+    
+    if (_url)
+    {
+        [_taskManager loadURL:_url width:self.browser_width height:self.browser_height withCapture:self withReply:^(IOSurfaceID ioSurfaceID) {
+            [self updateSurfaceID:ioSurfaceID];
+        }];
+        self.activeVideoDevice.uniqueID = _url;
+        self.captureName = _url;
+    }
+    return YES;
+}
 
 -(void)urlWasResized:(NSNotification *)notification
 {
@@ -106,26 +132,10 @@
 
 
 
--(void)resize
+-(void)updateSurfaceID:(IOSurfaceID)surfaceID
 {
-    [_taskManager resizeURL:_url width:self.browser_width height:self.browser_height];
-}
-
-
--(void)setUrl:(NSString *)url
-{
-    
-    
+    _surfaceID = surfaceID;
     IOSurfaceRef oldSurface = _browserSurface;
-    if (_url)
-    {
-        [_taskManager closeURL:_url];
-    }
-    
-    _url = url;
-    _surfaceID = [_taskManager loadURL:url width:self.browser_width height:self.browser_height];
-    self.activeVideoDevice.uniqueID = url;
-    self.captureName = url;
     
     if (_surfaceID)
     {
@@ -147,9 +157,96 @@
     {
         CFRelease(oldSurface);
     }
+    
 }
 
 
+-(void)resize
+{
+    [_taskManager resizeURL:_url width:self.browser_width height:self.browser_height withReply:^(IOSurfaceID ioSurfaceID) {
+        [self updateSurfaceID:ioSurfaceID];
+    }];
+}
+
+
+-(void)setUrl:(NSString *)url
+{
+    
+    
+    if (_url)
+    {
+        [_taskManager closeURL:_url];
+    }
+    
+    _url = url;
+    NSLog(@"CALLING SET URL %@ TASKMGR %@ %@", _url, _taskManager, self.pcmPlayer);
+    self.activeVideoDevice.uniqueID = url;
+    self.captureName = url;
+    
+    if (!_url)
+    {
+        return;
+    }
+    
+    if (_taskManager)
+    {
+        [_taskManager loadURL:_url width:self.browser_width height:self.browser_height withCapture:self withReply:^(IOSurfaceID ioSurfaceID) {
+            [self updateSurfaceID:ioSurfaceID];
+        }];
+    }
+    
+
+
+    
+    if (!self.pcmPlayer)
+    {
+        _audioFormat = [[AVAudioFormat alloc] initWithCommonFormat:AVAudioPCMFormatFloat32 sampleRate:44100.0 channels:2 interleaved:NO];
+        
+        self.pcmPlayer = [self createAttachedAudioInputForUUID:self.url withName:self.url withFormat:_audioFormat];
+        [self.pcmPlayer play];
+        
+
+
+    } else {
+        self.pcmPlayer.name = _url;
+    }
+    
+}
+
+
+-(void)setupAudioStream:(int)sampleRate withChannelCount:(int)channelCount
+{
+    
+    AVAudioChannelLayout *channelLayout = [AVAudioChannelLayout layoutWithLayoutTag:kAudioChannelLayoutTag_DiscreteInOrder | channelCount];
+    
+    AVAudioFormat *newFormat = [[AVAudioFormat alloc] initWithCommonFormat:AVAudioPCMFormatFloat32 sampleRate:sampleRate interleaved:NO channelLayout:channelLayout];
+    if (!self.pcmPlayer)
+    {
+        _audioFormat = newFormat;
+        
+        self.pcmPlayer = [self createAttachedAudioInputForUUID:self.url withName:self.url withFormat:_audioFormat];
+        [self.pcmPlayer play];
+        
+
+
+    } else {
+        if (![newFormat isEqual:_audioFormat])
+        {
+            [self.pcmPlayer setAudioFormat:newFormat];
+            _audioFormat = newFormat;
+        }
+    }
+}
+
+
+-(void)playPcmAudio:(NSData *)pcmData frameCount:(int)frameCount
+{
+    
+    CAMultiAudioPCM *retPCM = [[CAMultiAudioPCM alloc] initWithDescription:_audioFormat.streamDescription  forFrameCount:frameCount];
+    
+    memcpy(retPCM.audioBufferList->mBuffers->mData, pcmData.bytes, retPCM.audioBufferList->mBuffers->mDataByteSize*_audioFormat.channelCount);    
+    [self.pcmPlayer playPcmBuffer:retPCM];
+}
 
 -(NSString *)url
 {

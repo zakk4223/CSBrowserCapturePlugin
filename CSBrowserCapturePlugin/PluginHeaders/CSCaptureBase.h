@@ -3,11 +3,17 @@
 //  CocoaSplit
 //
 //  Created by Zakk on 7/21/14.
-//  Copyright (c) 2014 Zakk. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "CSCaptureSourceProtocol.h"
+#import "CSPcmPlayer.h"
+
+typedef enum frame_render_behavior_t {
+    kCSRenderFrameArrived = 0,
+    kCSRenderOnFrameTick = 1,
+    kCSRenderAsync = 2
+} frame_render_behavior;
 
 @interface CSCaptureBase : NSObject <NSCoding, NSCopying>
 
@@ -64,6 +70,16 @@
 
 
 
+@property (assign) frame_render_behavior renderType;
+
+@property (assign) bool canProvideTiming;
+
+@property (readonly) NSImage *libraryImage;
+
+//Unit: seconds
+//If this source has a duration (movie, animated gif, etc) return it here. Used for transitions and animations
+@property (readonly) float duration;
+
 
 //frameTick is called every render loop. You are not required to do anything here, but it may be useful for some timing/lazy rendering
 -(void)frameTick;
@@ -80,10 +96,19 @@
 -(CALayer *)createNewLayer;
 
 
-/* Update ALL the current layers for this Source. The provided block is run once for every layer. You should use this when you are updating content.
+/* Update ALL the current layers for this Source. The provided block is run once for every layer. You should use this when you are updating layer attributes.
  */
 
--(void)updateLayersWithBlock:(void(^)(CALayer *))updateBlock;
+-(void)updateLayersWithBlock:(void(^)(CALayer *layer))updateBlock;
+
+/* Update ALL the current layers for this Source. The provided block is run once for every layer. You should use this when you are updating layer video data.
+ */
+
+-(void)updateLayersWithFramedataBlock:(void(^)(CALayer *layer))updateBlock;
+
+/* If the update mechanism is going to store your block beyond the initial call, it will call preuse/postuse blocks. Calls to these blocks will always be balanced. You can do retain/release or other memory management here. The primary use for these blocks is if your update is buffered due to the user setting a video delay on an input.
+ */
+-(void)updateLayersWithFramedataBlock:(void (^)(CALayer *layer))updateBlock withPreuseBlock:(void(^)(void))preUseBlock withPostuseBlock:(void(^)(void))postUseBlock;
 
 /* Called when the input source goes away and the layer is no longer required. You probably don't need to override this. Default implementation just removes it from the underlying array */
 
@@ -91,14 +116,46 @@
 
 
 -(void)setDeviceForUniqueID:(NSString *)uniqueID;
--(NSView *)configurationView;
+-(NSViewController *)configurationView;
 +(NSString *) label;
+-(NSString *)instanceLabel;
++(bool)shouldLoad;
+
+
 //Class method to run code that messes with the CALayer(s). It has to be on the main thread even if it isn't in a view :(
 //All this method does is dispatch_sync to the main thread OR run the block immediately if we're already on the main thread
-+(void) layoutModification:(void (^)())modBlock;
++(void) layoutModification:(void (^)(void))modBlock;
+
+
+/* If the video source has a size, return it here. Called to size an input when it is first added. The default is NSZeroSize. If your input has no well-defined size just don't bother implementing this */
+-(NSSize)captureSize;
+
+/* Create a PCM audio input. Use this and not the service plugin version. This version properly finds the appropriate audio engine and creates the PCM input there */
+-(CSPcmPlayer *)createPCMInput:(NSString *)forUID withFormat:(AVAudioFormat *)withFormat;
+-(CSPcmPlayer *)createPCMInput:(NSString *)forUID named:(NSString *)withName withFormat:(AVAudioFormat *)withFormat;
+
+-(void)createAttachedAudioInputForUUID:(NSString *)uuid withName:(NSString *)withName;
+-(void)changeAttachedAudioInputName:(NSString *)uuid withName:(NSString *)withName;
+-(CSPcmPlayer *)createAttachedAudioInputForUUID:(NSString *)uuid withName:(NSString *)withName withFormat:(AVAudioFormat *)withFormat;
+-(void)removeAttachedAudioInput:(NSString *)uuid;
+
 
 //Don't ever call this, it's not for you.
 -(CALayer *)createNewLayerForInput:(id)inputsrc;
 -(CALayer *)layerForInput:(id)inputsrc;
+
+-(void)frameArrived;
+
++(bool)canCreateSourceFromPasteboardItem:(NSPasteboardItem *)item;
++(NSObject <CSCaptureSourceProtocol> *)createSourceFromPasteboardItem;
++(NSSet *)mediaUTIs;
+-(void)willExport;
+-(void)didExport;
+-(void) restoreWithCoder:(NSCoder *)aDecoder;
+-(void) saveWithCoder:(NSCoder *)aCoder;
+
+-(void)updateInputWithBlock:(void (^)(id input))updateBlock;
+-(NSString *)createXPCListener;
+-(bool)newXPCConnection:(NSXPCConnection *)newConnection forUUID:(NSString *)uuid;
 
 @end
